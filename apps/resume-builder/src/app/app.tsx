@@ -1,4 +1,15 @@
 import React, { useEffect, useState } from 'react';
+
+// eternal
+import {
+  Box
+} from 'grommet';
+
+// components
+import { EternalResume } from './eternal-resume';
+import { ResumeBuilderForms } from './resume-builder-forms';
+
+// libs
 import { Message } from '@eternal-resume-builder/api-interfaces';
 
 export const App = () => {
@@ -11,16 +22,10 @@ export const App = () => {
   }, []);
 
   return (
-    <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to resume-builder!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-        />
-      </div>
-      <div>{m.message}</div>
-    </>
+    <Box>
+      <EternalResume></EternalResume>
+      <ResumeBuilderForms></ResumeBuilderForms>
+    </Box>
   );
 };
 
