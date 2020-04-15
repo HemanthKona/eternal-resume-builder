@@ -9,7 +9,7 @@ export interface EternalResumeProps {}
 export const EternalResume = (props: EternalResumeProps) => {
   return (
     <Box bg={'green'}>
-      <Heading as="h1">Welcome to eternal-resume component!</Heading>
+      <Heading as="h1">Keshava Chary Kolloju upcoming SMD</Heading>
     </Box>
   );
 };
