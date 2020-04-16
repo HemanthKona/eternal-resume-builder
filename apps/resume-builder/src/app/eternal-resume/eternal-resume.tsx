@@ -1,7 +1,7 @@
 import React from 'react';
 
 // external
-import { Box, Heading } from 'theme-ui';
+import { jsx, Box, Heading } from 'theme-ui';
 
 /* eslint-disable-next-line */
 export interface EternalResumeProps {}

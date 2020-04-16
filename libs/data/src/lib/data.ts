@@ -1,4 +1,4 @@
-export const data = {
+export let data = {
   "basics": {
     "name": "Eternal Life",
     "label": "Programmer",
