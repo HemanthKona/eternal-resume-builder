@@ -13,7 +13,7 @@ export interface ShowJsonOutputProps {}
 
 export const ShowJsonOutput = (props: ShowJsonOutputProps) => {
   return (
-    <Box bg={'red'} p={'10px'}>
+    <Box bg={'#afafaf'} p={'10px'} sx={{ height: '400px', overflow: 'scroll'}}>
       <Highlight {...defaultProps} code={JSON.stringify(data, null, 2)} language="json">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>

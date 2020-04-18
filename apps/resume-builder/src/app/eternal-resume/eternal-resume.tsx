@@ -11,19 +11,20 @@ export interface EternalResumeProps {}
 
 export const EternalResume = (props: EternalResumeProps) => {
   return (
-    <Grid gap={2} rows={[2, '2fr 1fr']}>
+    <Grid gap={2}>
       <Grid gap={2} columns={[2, '2fr 1fr']}>
         <Box bg='blue'>
-        <Heading as="h1">{data.basics.name}</Heading>
-        <br/>
-        <Heading as="h2">{data.basics.label}</Heading>
-        </Box>
-        <Box bg='green'>
-        <Heading as="h3">{data.basics.email}</Heading>
-        <br/>
-        <Heading as="h3">{data.basics.phone}</Heading>
+          <Heading as="h1">{data.basics.name}</Heading>
+          <br/>
+          <Heading as="h2">{data.basics.label}</Heading>
+          </Box>
+          <Box bg='green'>
+          <Heading as="h3">{data.basics.email}</Heading>
+          <br/>
+          <Heading as="h3">{data.basics.phone}</Heading>
         </Box>
       </Grid>
+
     </Grid>
 
   );
