@@ -1,27 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // external
 import { Box, Heading, Grid } from 'theme-ui';
 
 // internal
-import { data } from '@eternal-resume-builder/data';
+import { ResumeContext } from '../app.context';
 
 /* eslint-disable-next-line */
 export interface EternalResumeProps {}
 
 export const EternalResume = (props: EternalResumeProps) => {
+  const [state] = useContext(ResumeContext);
+
   return (
     <Grid gap={2}>
       <Grid gap={2} columns={[2, '2fr 1fr']}>
         <Box bg='blue'>
-          <Heading as="h1">{data.basics.name}</Heading>
+          <Heading as="h1">{state.basics.name}</Heading>
           <br/>
-          <Heading as="h2">{data.basics.label}</Heading>
+          <Heading as="h2">{state.basics.label}</Heading>
           </Box>
           <Box bg='green'>
-          <Heading as="h3">{data.basics.email}</Heading>
+          <Heading as="h3">{state.basics.email}</Heading>
           <br/>
-          <Heading as="h3">{data.basics.phone}</Heading>
+          <Heading as="h3">{state.basics.phone}</Heading>
         </Box>
       </Grid>
 
@@ -34,16 +36,16 @@ export default EternalResume;
 
   {/*
     <Box bg={'blue'}>
-  <Heading as="h1">{data.basics.name}</Heading>
+  <Heading as="h1">{state.basics.name}</Heading>
   <br/>
-  <Heading as="h2">{data.basics.label}</Heading>
+  <Heading as="h2">{state.basics.label}</Heading>
   <br/>
-  <Heading as="h3">{data.basics.picture}</Heading>
+  <Heading as="h3">{state.basics.picture}</Heading>
   <br/>
-  <Heading as="h3">{data.basics.email}</Heading>
+  <Heading as="h3">{state.basics.email}</Heading>
   <br/>
-  <Heading as="h3">{data.basics.phone}</Heading>
+  <Heading as="h3">{state.basics.phone}</Heading>
   <br/>
-  <Heading as="h3">{data.basics.website}</Heading>
+  <Heading as="h3">{state.basics.website}</Heading>
     </Box>
   */}

@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // exteral
 import Highlight, { defaultProps }  from 'prism-react-renderer';
 import { Box } from "theme-ui";
 
 // internal
-import { data } from '@eternal-resume-builder/data';
+import { ResumeContext } from '../app.context';
 
 /* eslint-disable-next-line */
 export interface ShowJsonOutputProps {}
 
 
 export const ShowJsonOutput = (props: ShowJsonOutputProps) => {
+  const [state] = useContext(ResumeContext);
+
   return (
     <Box bg={'#afafaf'} p={'10px'} sx={{ height: '400px', overflow: 'scroll'}}>
-      <Highlight {...defaultProps} code={JSON.stringify(data, null, 2)} language="json">
+      <Highlight {...defaultProps} code={JSON.stringify(state, null, 2)} language="json">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
