@@ -15,7 +15,7 @@ export const ShowJsonOutput = (props: ShowJsonOutputProps) => {
   const [state] = useContext(ResumeContext);
 
   return (
-    <Box bg={'#afafaf'} p={'10px'} sx={{ height: '200px', overflow: 'scroll'}}>
+    <Box bg={'#afafaf'} p={'10px'} sx={{ overflow: 'scroll'}}>
       <Highlight {...defaultProps} code={JSON.stringify(state, null, 2)} language="json">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>

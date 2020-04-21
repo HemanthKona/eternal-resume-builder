@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext } from 'react';
 
 // eternal
@@ -36,17 +37,12 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ResumeProvider>
-        <Grid gap={2} >
-          <Grid gap={2} columns={[2, '2fr 1fr']}>
+        <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
+          <Grid gap={2} columns={[3, '2fr 1fr']}>
             <EternalResume></EternalResume>
             <ShowJsonOutput></ShowJsonOutput>
           </Grid>
           <ResumeBuilderForms></ResumeBuilderForms>
-          <Box bg={'green'}>
-            {/* { resume.state.name.first }
-            Update: <Button onClick={ e => update()}> { state.count } </Button>
-            Name: <Button onClick={e => update()}> { state.name.first } </Button> */}
-          </Box>
         </Grid>
       </ResumeProvider>
     </ThemeProvider>
