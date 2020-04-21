@@ -43,10 +43,30 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
     } else {
       setState(prevState => {
         return produce(prevState, draft => {
-          set(draft, updatePath, value);
+          set(draft, name, value);
         });
       });
     }
+  }
+
+  const addProfiles = () => {
+    setState(prevState => {
+      return produce(prevState, draft => {
+        draft.basics.profiles.push({
+          network: '',
+          url: '',
+          username: ''
+        })
+      })
+    });
+  }
+
+  const removeProfiles = (profileIndex) => {
+    setState(prevState => {
+      return produce(prevState, draft => {
+        draft.basics.profiles.splice(profileIndex, 1);
+      })
+    });
   }
 
   return (
@@ -73,16 +93,32 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
             })
 
           } else if (isArray(state.basics[level1Key])) {
-            return state.basics[level1Key].map((level1ArrayItem, level1ArrayIndex) => {
-              // isString repeateable list
-              // isObject
-
-              if (!isArray(level1ArrayItem) && isObject(level1ArrayItem)) {
-                return Object.keys(level1ArrayItem).map((level2ObjectKey, level2ObjectIndex) => {
-                  return <span key={level2ObjectIndex}>{level2ObjectKey}</span>
-                })
-              }
-            })
+            return (
+              <Box>
+                <Heading as="h3">{level1Key}</Heading>
+                {
+                  state.basics[level1Key].map((level1ArrayItem, level1ArrayIndex) => {
+                    // isString repeateable list
+                    // isObject
+                    if (!isArray(level1ArrayItem) && isObject(level1ArrayItem)) {
+                      return (
+                        <Box>
+                          {
+                            Object.keys(level1ArrayItem).map((level2ObjectKey, level2ObjectIndex) => {
+                              return <Input key={level2ObjectIndex} placeholder={level2ObjectKey.toUpperCase()} name={`basics.${level1Key}[${level1ArrayIndex}].${level2ObjectKey}`} value={state.basics[level1Key][level1ArrayIndex][level2ObjectKey]}
+                                onChange={updateForm}
+                              ></Input>
+                            })
+                          }
+                          <Button onClick={e => removeProfiles(level1ArrayIndex)}>Remove {level1Key} </Button>
+                        </Box>
+                      )
+                    }
+                  })
+                }
+                <Button onClick={addProfiles}>Add {level1Key} </Button>
+              </Box>
+            )
           }
 
         })
