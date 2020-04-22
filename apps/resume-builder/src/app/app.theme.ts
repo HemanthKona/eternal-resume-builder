@@ -6,13 +6,14 @@ import {
 } from '@theme-ui/presets';
 
 export default {
-  ...bulma
+  ...tailwind
 }
 
+// may be use these
 export {
   base,
   roboto,
-  tailwind
+  bulma
 }
 
 

@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react';
 
-import { data } from '@eternal-resume-builder/data';
+import { sample, ResumeSchema } from '@eternal-resume-builder/data';
 
-const ResumeContext = createContext<any>({init: 0});
+const ResumeContext = createContext<ResumeSchema>({});
 
 const ResumeProvider = props => {
-  const [state, setState] = useState<any>(data);
+  const [state, setState] = useState<ResumeSchema>(sample);
 
   // const api = resumeApi(state, setState);
 
@@ -19,18 +19,18 @@ const ResumeProvider = props => {
   )
 }
 
-const resumeApi = (state, setState) => {
+// const resumeApi = (state, setState) => {
 
-  console.log(state);
-  const getAll = () => {
-    return {...state}
-  }
+//   console.log(state);
+//   const getAll = () => {
+//     return {...state}
+//   }
 
-  return {
-    getAll,
-    setState
-  }
-}
+//   return {
+//     getAll,
+//     setState
+//   }
+// }
 
 export {
   ResumeContext,

@@ -38,7 +38,7 @@ export const App = () => {
     <ThemeProvider theme={theme}>
       <ResumeProvider>
         <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
-          <Grid gap={2} columns={[3, '2fr 1fr']}>
+          <Grid gap={2} columns={[0, '2fr 1fr']}>
             <EternalResume></EternalResume>
             <ShowJsonOutput></ShowJsonOutput>
           </Grid>

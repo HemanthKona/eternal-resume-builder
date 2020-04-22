@@ -1,2 +1,2 @@
-export * from './data';
-export * from './updateData';
+export * from './sample';
+export * from './resume.d';

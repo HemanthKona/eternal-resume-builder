@@ -1,4 +1,6 @@
-export let data = {
+import { ResumeSchema } from './resume.d';
+
+export const sample: ResumeSchema = {
   "basics": {
     "name": "Eternal Life",
     "label": "Programmer",

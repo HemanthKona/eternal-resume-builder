@@ -15,12 +15,12 @@ export const EternalResume = (props: EternalResumeProps) => {
   return (
     <Grid gap={2}>
       <Grid gap={2} columns={[2, '2fr 1fr']}>
-        <Box bg='purple'>
+        <Box bg='gray.4'>
           <Heading as="h1">{state.basics.name}</Heading>
           <br/>
           <Heading as="h2">{state.basics.label}</Heading>
           </Box>
-          <Box bg='yellow'>
+          <Box bg='gray.6'>
           <Heading as="h3">{state.basics.email}</Heading>
           <br/>
           <Heading as="h3">{state.basics.phone}</Heading>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // external
 import {
@@ -23,7 +23,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
   // const { state, update } = useResumeStore();
 
   console.log("Resume Forms");
-  const [state, setState] = React.useContext(ResumeContext);
+  const [state, setState] = useContext(ResumeContext);
 
   console.log(state);
 
@@ -70,7 +70,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
   }
 
   return (
-    <Box bg={'pink'} p={'3'} sx={{marginTop: '1rem', overflowY: 'scroll'}}>
+    <Box bg={'gray.3'} p={'3'} sx={{marginTop: '1rem', overflowY: 'scroll'}}>
       <Heading as="h3">Welcome to resume-builder-forms component!</Heading>
       {/* state.baiscs */}
       <Heading as="h2">Profile Basics</Heading>
@@ -110,13 +110,13 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                               ></Input>
                             })
                           }
-                          <Button onClick={e => removeProfiles(level1ArrayIndex)}>Remove {level1Key} </Button>
+                          <Button variant="elevated" onClick={e => removeProfiles(level1ArrayIndex)}>Remove {level1Key} </Button>
                         </Box>
                       )
                     }
                   })
                 }
-                <Button onClick={addProfiles}>Add {level1Key} </Button>
+                <Button variant="elevated" onClick={addProfiles}>Add {level1Key} </Button>
               </Box>
             )
           }
