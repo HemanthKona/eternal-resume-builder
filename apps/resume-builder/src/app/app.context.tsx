@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 
 import { sample, ResumeSchema } from '@eternal-resume-builder/data';
 
-const ResumeContext = createContext<ResumeSchema>({});
+const ResumeContext = createContext<any>({});
 
 const ResumeProvider = props => {
   const [state, setState] = useState<ResumeSchema>(sample);
