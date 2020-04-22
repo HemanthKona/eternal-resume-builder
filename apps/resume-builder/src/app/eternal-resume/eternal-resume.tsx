@@ -26,7 +26,6 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Heading as="h3">{state.basics.phone}</Heading>
         </Box>
       </Grid>
-
     </Grid>
 
   );

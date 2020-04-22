@@ -37,12 +37,16 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ResumeProvider>
-        <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
-          <Grid gap={2} columns={[0, '2fr 1fr']}>
-            <EternalResume></EternalResume>
-            <ShowJsonOutput></ShowJsonOutput>
+        <Grid gap={2} columns={['auto 60px']}>
+          <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
+            <Grid gap={2} columns={[0, '2fr 1fr']}>
+              <EternalResume></EternalResume>
+              <ShowJsonOutput></ShowJsonOutput>
+            </Grid>
+            <ResumeBuilderForms></ResumeBuilderForms>
           </Grid>
-          <ResumeBuilderForms></ResumeBuilderForms>
+          {/* Right side toolbar */}
+          <Box bg='gray.7'></Box>
         </Grid>
       </ResumeProvider>
     </ThemeProvider>
