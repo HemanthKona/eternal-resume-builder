@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 // external
-import { Box, Heading, Grid } from 'theme-ui';
+import { jsx, Box, Heading, Grid } from 'theme-ui';
 
 // internal
 import { ResumeContext } from '../app.context';
@@ -13,7 +13,7 @@ export const EternalResume = (props: EternalResumeProps) => {
   const [state] = useContext(ResumeContext);
 
   return (
-    <Grid gap={2}>
+    <Grid gap={2} m='2' sx={{ boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)' }}>
       <Grid gap={2} columns={[2, '2fr 1fr']}>
         <Box bg='gray.4'>
           <Heading as="h1">{state.basics.name}</Heading>

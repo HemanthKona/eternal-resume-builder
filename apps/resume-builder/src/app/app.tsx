@@ -2,7 +2,7 @@
 import React, { createContext, useState, useContext } from 'react';
 
 // eternal
-import { Button, Box, Grid, ThemeProvider } from 'theme-ui';
+import { jsx, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
 
 // config
 import theme from './app.theme';
@@ -31,22 +31,25 @@ import { ResumeBuilderForms } from './resume-builder-forms';
 
 export const App = () => {
   const resume = React.useContext(ResumeContext);
+  const [grid, setGrid] = useState(['minmax(auto, 960px) 1fr']);
 
   console.log(resume);
 
   return (
     <ThemeProvider theme={theme}>
       <ResumeProvider>
-        <Grid gap={2} columns={['auto 60px']}>
+        <Grid gap={0} columns={['auto 100px']}>
           <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
-            <Grid gap={2} columns={[0, '2fr 1fr']}>
+            <Grid gap={2} columns={grid}>
               <EternalResume></EternalResume>
               <ShowJsonOutput></ShowJsonOutput>
             </Grid>
             <ResumeBuilderForms></ResumeBuilderForms>
           </Grid>
           {/* Right side toolbar */}
-          <Box bg='gray.7'></Box>
+          <Flex sx={{flexDirection: 'column'}} bg='gray.7' >
+            <Button variant="elevated" onClick={e => setGrid(['minmax(auto, 960px)'])}> JSON </Button>
+          </Flex>
         </Grid>
       </ResumeProvider>
     </ThemeProvider>
