@@ -2,7 +2,7 @@
 import React, { createContext, useState, useContext } from 'react';
 
 // eternal
-import { jsx, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
+import { jsx, Box, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
 
 // config
 import theme from './app.theme';
@@ -38,17 +38,16 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ResumeProvider>
-        <Grid gap={0} columns={['auto 100px']}>
-          <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
-            <Grid gap={2} columns={grid}>
-              <EternalResume></EternalResume>
-              <ShowJsonOutput></ShowJsonOutput>
-            </Grid>
-            <ResumeBuilderForms></ResumeBuilderForms>
-          </Grid>
-          {/* Right side toolbar */}
-          <Flex sx={{flexDirection: 'column'}} bg='gray.7' >
-            <Button variant="elevated" onClick={e => setGrid(['minmax(auto, 960px)'])}> JSON </Button>
+        <Grid gap={0} columns={['auto auto']}>
+          <EternalResume></EternalResume>
+          <Flex sx={{flexDirection: 'row'}}>
+
+            <ShowJsonOutput></ShowJsonOutput>
+
+            <Box sx={{ width: '100px'}} bg='gray.7' >
+              <Button variant="elevated"> {'</>'} </Button>
+            </Box>
+
           </Flex>
         </Grid>
       </ResumeProvider>

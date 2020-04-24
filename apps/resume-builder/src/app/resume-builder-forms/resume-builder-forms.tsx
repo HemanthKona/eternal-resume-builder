@@ -70,7 +70,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
   }
 
   return (
-    <Box bg={'gray.3'} p={'3'} sx={{marginTop: '1rem', overflowY: 'scroll'}}>
+    <Box bg={'gray.3'} p={'3'} sx={{display: 'none', marginTop: '1rem', overflowY: 'scroll'}}>
       <Heading as="h3">Welcome to resume-builder-forms component!</Heading>
       {/* state.baiscs */}
       <Heading as="h2">Profile Basics</Heading>
