@@ -38,7 +38,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ResumeProvider>
-        <Grid gap={0} columns={['auto 100px']}>
+        <Grid gap={0} columns={['auto 60px']}>
           <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
             <Grid gap={2} columns={grid}>
               <EternalResume></EternalResume>
@@ -48,7 +48,7 @@ export const App = () => {
           </Grid>
           {/* Right side toolbar */}
           <Flex sx={{flexDirection: 'column'}} bg='gray.7' >
-            <Button variant="elevated" onClick={e => setGrid(['minmax(auto, 960px)'])}> JSON </Button>
+            <Button variant="elevated"> {'</>'} </Button>
           </Flex>
         </Grid>
       </ResumeProvider>
