@@ -14,7 +14,7 @@ export const EternalResume = (props: EternalResumeProps) => {
 
   return (
     <Grid gap={2} m='2' sx={{ boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>
-      <Grid gap={2} columns={[2, '2fr 1fr']}>
+      <Grid gap={2} columns={['1fr']}>
         <Box bg='gray.4'>
           <Heading as="h1">{state.basics.name}</Heading>
           <Heading as="h2">{state.basics.label}</Heading>
