@@ -77,7 +77,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
 
   return (
     <Box bg={'gray.3'} p={'3'} sx={{ marginTop: '1rem', overflowY: 'scroll'}}>
-      <Heading as="h3">Welcome to resume-builder-forms component!</Heading>
+      <Heading as="h3">Resume Builder</Heading>
       {
         Object.keys(state).map((topLevelKey, topLevelIndex) => {
           return (
