@@ -38,16 +38,17 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ResumeProvider>
-        <Grid gap={0} columns={['auto auto']}>
-          <EternalResume></EternalResume>
-          <Flex sx={{flexDirection: 'row'}}>
-
-            <ShowJsonOutput></ShowJsonOutput>
-
-            <Box sx={{ width: '100px'}} bg='gray.7' >
-              <Button variant="elevated"> {'</>'} </Button>
-            </Box>
-
+        <Grid gap={0} columns={['auto 60px']}>
+          <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
+            <Grid gap={2} columns={grid}>
+              <EternalResume></EternalResume>
+              <ShowJsonOutput></ShowJsonOutput>
+            </Grid>
+            <ResumeBuilderForms></ResumeBuilderForms>
+          </Grid>
+          {/* Right side toolbar */}
+          <Flex sx={{flexDirection: 'column'}} bg='gray.7' >
+            <Button variant="elevated"> {'</>'} </Button>
           </Flex>
         </Grid>
       </ResumeProvider>
