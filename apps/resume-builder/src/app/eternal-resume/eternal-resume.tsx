@@ -6,10 +6,6 @@ import { jsx, Box, Divider, Heading, Grid, Text } from 'theme-ui';
 // internal
 import { ResumeContext } from '../app.context';
 
-const capitalize = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 /* eslint-disable-next-line */
 export interface EternalResumeProps {}
 
@@ -19,7 +15,8 @@ export const EternalResume = (props: EternalResumeProps) => {
   return (
     <Grid gap={2} m='2' sx={{ boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>
       <Grid gap={2} columns={['1fr']}>
-        <Box bg='gray.4'>
+        <Box bg='gray.4' p='5'>
+
           <Heading as="h1">{state.basics.name}</Heading>
           <Heading as="h2">{state.basics.label}</Heading>
           <Text as="h4">{state.basics.email}</Text>
@@ -27,21 +24,23 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="h4">{state.basics.website}</Text>
           <Divider></Divider>
           <Text as="p">{state.basics.summary}</Text>
-          <Text as="h4">{state.basics.location.address}</Text>
-          <Text as="h4">{state.basics.location.postalCode}</Text>
-          <Text as="h4">{state.basics.location.city}</Text>
-          <Text as="h4">{state.basics.location.countryCode}</Text>
-          <Text as="h4">{state.basics.location.region}</Text>
+          <Text as="p">{state.basics.location.address}</Text>
+          <Text as="p">{state.basics.location.postalCode}</Text>
+          <Text as="p">{state.basics.location.city}</Text>
+          <Text as="p">{state.basics.location.countryCode}</Text>
+          <Text as="p">{state.basics.location.region}</Text>
           <Divider></Divider>
+
           <Heading as="h2">Profiles</Heading>
           <Divider></Divider>
-          <Text as="h4">{state.basics.profiles[0].network}</Text>
-          <Text as="h4">{state.basics.profiles[0].username}</Text>
-          <Text as="h4">{state.basics.profiles[0].url}</Text>
-          <Text as="h4">{state.basics.profiles[1].network}</Text>
-          <Text as="h4">{state.basics.profiles[1].username}</Text>
-          <Text as="h4">{state.basics.profiles[1].url}</Text>
+          <Text as="p">{state.basics.profiles[0].network}</Text>
+          <Text as="p">{state.basics.profiles[0].username}</Text>
+          <Text as="p">{state.basics.profiles[0].url}</Text>
+          <Text as="p">{state.basics.profiles[1].network}</Text>
+          <Text as="p">{state.basics.profiles[1].username}</Text>
+          <Text as="p">{state.basics.profiles[1].url}</Text>
           <Divider></Divider>
+
           <Heading as="h2">Work</Heading>
           <Divider></Divider>
           <Text as="h4">{state.work[0].company}</Text>
@@ -50,11 +49,12 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="p">{state.work[0].startDate}</Text>
           <Text as="p">{state.work[0].endDate}</Text>
           <Text as="p">{state.work[0].summary}</Text>
+          <Heading as="h4">Highlights</Heading>
+          <ul>
+            <li>{state.work[0].highlights[0]}</li>
+          </ul>
           <Divider></Divider>
-          <Heading as="h3">Highlights</Heading>
-          <Divider></Divider>
-          <Text as="li">{state.work[0].highlights[0]}</Text>
-          <Divider></Divider>
+
           <Heading as="h2">Volunteer</Heading>
           <Divider></Divider>
           <Text as="h4">{state.volunteer[0].organization}</Text>
@@ -63,11 +63,12 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="p">{state.volunteer[0].startDate}</Text>
           <Text as="p">{state.volunteer[0].endDate}</Text>
           <Text as="p">{state.volunteer[0].summary}</Text>
+          <Heading as="h4">Highlights</Heading>
+          <ul>
+            <li>{state.volunteer[0].highlights[0]}</li>
+          </ul>
           <Divider></Divider>
-          <Heading as="h3">Highlights</Heading>
-          <Divider></Divider>
-          <Text as="li">{state.volunteer[0].highlights[0]}</Text>
-          <Divider></Divider>
+
           <Heading as="h2">Education</Heading>
           <Divider></Divider>
           <Text as="h4">{state.education[0].institution}</Text>
@@ -76,11 +77,13 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="p">{state.education[0].startDate}</Text>
           <Text as="p">{state.education[0].endDate}</Text>
           <Text as="p">{state.education[0].gpa}</Text>
-
-          <Heading as="h2">Courses</Heading>
-          <Text as="li">{state.education[0].courses[0]}</Text>
-          <Text as="li">{state.education[0].courses[1]}</Text>
+          <Heading as="h4">Courses</Heading>
+          <ul>
+            <li>{state.education[0].courses[0]}</li>
+            <li>{state.education[0].courses[1]}</li>
+          </ul>
           <Divider></Divider>
+
           <Heading as="h2">Awards</Heading>
           <Divider></Divider>
           <Text as="h4">{state.awards[0].title}</Text>
@@ -88,6 +91,7 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="p">{state.awards[0].awarder}</Text>
           <Text as="p">{state.awards[0].summary}</Text>
           <Divider></Divider>
+
           <Heading as="h2">Publications</Heading>
           <Divider></Divider>
           <Text as="h4">{state.publications[0].name}</Text>
@@ -96,34 +100,45 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="p">{state.publications[0].website}</Text>
           <Text as="p">{state.publications[0].summary}</Text>
           <Divider></Divider>
+
           <Heading as="h2">Skills</Heading>
           <Divider></Divider>
           <Text as="h4">{state.skills[0].name}</Text>
           <Text as="p">{state.skills[0].level}</Text>
-          <Text as="li">{state.skills[0].keywords[0]}</Text>
-          <Text as="li">{state.skills[0].keywords[1]}</Text>
-          <Text as="li">{state.skills[0].keywords[2]}</Text>
+          <ul>
+            <li>{state.skills[0].keywords[0]}</li>
+            <li>{state.skills[0].keywords[1]}</li>
+            <li>{state.skills[0].keywords[2]}</li>
+          </ul>
           <Text as="h4">{state.skills[1].name}</Text>
           <Text as="p">{state.skills[1].level}</Text>
-          <Text as="li">{state.skills[1].keywords[0]}</Text>
-          <Text as="li">{state.skills[1].keywords[1]}</Text>
-          <Text as="li">{state.skills[1].keywords[2]}</Text>
+          <ul>
+            <li>{state.skills[1].keywords[0]}</li>
+            <li>{state.skills[1].keywords[1]}</li>
+            <li>{state.skills[1].keywords[2]}</li>
+          </ul>
           <Divider></Divider>
+
           <Heading as="h2">Languages</Heading>
           <Divider></Divider>
           <Text as="h4">{state.languages[0].language}</Text>
           <Text as="p">{state.languages[0].fluency}</Text>
           <Divider></Divider>
+
           <Heading as="h2">Interests</Heading>
           <Divider></Divider>
           <Text as="h4">{state.interests[0].name}</Text>
-          <Text as="li">{state.interests[0].keywords[0]}</Text>
-          <Text as="li">{state.interests[0].keywords[1]}</Text>
+          <ul>
+            <li>{state.interests[0].keywords[0]}</li>
+            <li>{state.interests[0].keywords[1]}</li>
+          </ul>
           <Divider></Divider>
+
           <Heading as="h2">References</Heading>
           <Divider></Divider>
           <Text as="h4">{state.references[0].name}</Text>
           <Text as="p">{state.references[0].reference}</Text>
+
         </Box>
       </Grid>
     </Grid>

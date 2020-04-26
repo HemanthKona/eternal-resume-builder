@@ -10,7 +10,7 @@ export default {
   forms: {
     ...tailwind.forms,
     input: {
-      marginBottom: tailwind.space[3]
+      mb: 3
     }
   }
 }

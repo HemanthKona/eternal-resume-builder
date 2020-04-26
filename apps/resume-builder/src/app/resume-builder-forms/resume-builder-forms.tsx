@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import {
   Box,
   Button,
+  Divider,
   Heading,
   Input,
   Styled
@@ -16,6 +17,10 @@ import { string as isString, object as isObject, array as isArray } from 'is_js'
 import { ResumeContext } from '../app.context';
 import { stat } from 'fs';
 import { is } from 'immer/dist/internal';
+
+const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 /* eslint-disable-next-line */
 export interface ResumeBuilderFormsProps {}
@@ -76,9 +81,9 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
       {
         Object.keys(state).map((topLevelKey, topLevelIndex) => {
           return (
-            <div id={topLevelIndex.toString()} key={topLevelIndex}>
+            <div id={topLevelKey} key={topLevelIndex}>
               {/** state.baiscs */}
-              <Heading as="h2" key={topLevelIndex}> {topLevelKey} </Heading>
+              <Heading as="h2" key={topLevelIndex} pt='4' pb='3'> {capitalize(topLevelKey)} </Heading>
               {
                 Object.keys(state[topLevelKey]).map((level1Key, level1Index) => {
                   if (isString(state[topLevelKey][level1Key])) {
@@ -100,7 +105,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                   } else if (isArray(state[topLevelKey][level1Key])) {
                     return (
                       <Box key={level1Index}>
-                        <Heading as="h3">{level1Key}</Heading>
+                        <Heading as="h3" py='2'>{capitalize(level1Key)}</Heading>
                         {
                           state[topLevelKey][level1Key].map((level1ArrayItem, level1ArrayIndex) => {
                             // isString repeateable list
@@ -128,6 +133,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
 
                 })
               }
+              <Divider bg='gray.4' mx='0'></Divider>
               {/**end state[topLevelKey] */}
             </div>
           )
