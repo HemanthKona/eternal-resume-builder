@@ -6,7 +6,13 @@ import {
 } from '@theme-ui/presets';
 
 export default {
-  ...tailwind
+  ...tailwind,
+  forms: {
+    ...tailwind.forms,
+    input: {
+      marginBottom: tailwind.space[3]
+    }
+  }
 }
 
 // may be use these

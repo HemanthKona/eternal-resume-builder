@@ -5,7 +5,8 @@ import {
   Box,
   Button,
   Heading,
-  Input
+  Input,
+  Styled
 } from 'theme-ui';
 import { set } from 'lodash';
 import { produce } from 'immer';
@@ -22,15 +23,15 @@ export interface ResumeBuilderFormsProps {}
 export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
   // const { state, update } = useResumeStore();
 
-  console.log("Resume Forms");
+  // console.log("Resume Forms");
   const [state, setState] = useContext(ResumeContext);
 
-  console.log(state);
+  // console.log(state);
 
   const updateForm = ({ target: {name, type, value} }) => {
     const updatePath = name.split('.');
 
-    console.log(name, type, value);
+    // console.log(name, type, value);
 
     if (updatePath.length === 1) {
       setState(prevState => {
@@ -75,9 +76,9 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
       {
         Object.keys(state).map((topLevelKey, topLevelIndex) => {
           return (
-            <div>
+            <div id={topLevelIndex.toString()} key={topLevelIndex}>
               {/** state.baiscs */}
-              <Heading as="h2"> {topLevelKey} </Heading>
+              <Heading as="h2" key={topLevelIndex}> {topLevelKey} </Heading>
               {
                 Object.keys(state[topLevelKey]).map((level1Key, level1Index) => {
                   if (isString(state[topLevelKey][level1Key])) {
@@ -98,7 +99,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
 
                   } else if (isArray(state[topLevelKey][level1Key])) {
                     return (
-                      <Box>
+                      <Box key={level1Index}>
                         <Heading as="h3">{level1Key}</Heading>
                         {
                           state[topLevelKey][level1Key].map((level1ArrayItem, level1ArrayIndex) => {
@@ -106,7 +107,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                             // isObject
                             if (!isArray(level1ArrayItem) && isObject(level1ArrayItem)) {
                               return (
-                                <Box>
+                                <Box key={level1ArrayIndex}>
                                   {
                                     Object.keys(level1ArrayItem).map((level2ObjectKey, level2ObjectIndex) => {
                                       return <Input key={level2ObjectIndex} placeholder={level2ObjectKey.toUpperCase()} name={`basics.${level1Key}[${level1ArrayIndex}].${level2ObjectKey}`} value={state[topLevelKey][level1Key][level1ArrayIndex][level2ObjectKey]}
