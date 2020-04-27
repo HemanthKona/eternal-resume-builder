@@ -13,6 +13,7 @@ import { ResumeProvider, ResumeContext,  } from './app.context';
 
 // components
 import { EternalResume } from './eternal-resume';
+import { Resume } from './resume';
 import { ShowJsonOutput } from './show-json-output';
 import { ResumeBuilderForms } from './resume-builder-forms';
 
@@ -42,7 +43,7 @@ export const App = () => {
         <Grid gap={0} columns={['auto 60px']}>
           <Grid gap={0} sx={{gridTemplateRows:'50vh 50vh'}}>
             <Grid gap={2} columns={grid}>
-              <EternalResume></EternalResume>
+              <Resume></Resume>
               <ShowJsonOutput></ShowJsonOutput>
             </Grid>
             <ResumeBuilderForms></ResumeBuilderForms>
