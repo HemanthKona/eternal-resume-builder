@@ -12,6 +12,12 @@ export default {
     input: {
       mb: 3
     }
+  },
+  styles: {
+    ...tailwind.styles,
+    li: {
+      display: 'flex'
+    }
   }
 }
 

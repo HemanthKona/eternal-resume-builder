@@ -1,6 +1,6 @@
 import { ResumeSchema } from './resume';
 
-export const sample: ResumeSchema = {
+export const empty: ResumeSchema = {
   "basics": {
     "name": "",
     "label": "",

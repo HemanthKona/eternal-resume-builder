@@ -9,17 +9,20 @@ import {
   Input,
   Styled
 } from 'theme-ui';
-import { set } from 'lodash';
+import { set, unset } from 'lodash';
 import { produce } from 'immer';
 import { string as isString, object as isObject, array as isArray } from 'is_js';
 
 // libs
 import { ResumeContext } from '../app.context';
-import { stat } from 'fs';
-import { is } from 'immer/dist/internal';
+import { empty } from '@eternal-resume-builder/data'
 
 const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const singularize = (str: string) => {
+  return str[str.length - 1] === 's' ? str.slice(0, -1) : str;
 }
 
 /* eslint-disable-next-line */
@@ -75,6 +78,38 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
     });
   }
 
+  const addSection = (section) => {
+    setState(prevState => {
+      return produce(prevState, draft => {
+        draft[section].push(empty[section][0]);
+      })
+    })
+  }
+
+  const removeSection = (section, sectionIndex) => {
+    setState(prevState => {
+      return produce(prevState, draft => {
+        draft[section].splice(sectionIndex, 1);
+      })
+    });
+  }
+
+  const addItem = (section, sectionIndex, item) => {
+    setState(prevState => {
+      return produce(prevState, draft => {
+        draft[section][sectionIndex][item].push('');
+      })
+    })
+  }
+
+  const removeItem = (section, sectionIndex, item, itemIndex) => {
+    setState(prevState => {
+      return produce(prevState, draft => {
+        draft[section][sectionIndex][item].splice(itemIndex, 1);
+      })
+    })
+  }
+
   return (
     <Box bg={'gray.3'} p={'3'} sx={{ marginTop: '1rem', overflowY: 'scroll'}}>
       <Heading as="h3">Resume Builder</Heading>
@@ -94,13 +129,41 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                     )
 
                   } else if (!isArray(state[topLevelKey][level1Key]) && isObject(state[topLevelKey][level1Key])) {
-                    return Object.keys(state[topLevelKey][level1Key]).map((level2Key, level2Index) => {
-                      return (
-                        <Input key={level2Index} placeholder={level2Key.toUpperCase()} name={`basics.${level1Key}.${level2Key}`} value={state[topLevelKey][level1Key][level2Key]}
-                          onChange={updateForm}
-                        ></Input>
-                      )
-                    })
+                    return (
+                      <Box id={`${topLevelKey}-${level1Index}`} key={level1Index}>
+                        {
+                          Object.keys(state[topLevelKey][level1Key]).map((level2Key, level2Index) => {
+                            if (isString(state[topLevelKey][level1Key][level2Key])) {
+                              return (
+                                <Input key={level2Index} placeholder={level2Key.toUpperCase()} name={`${topLevelKey}.${level1Key}.${level2Key}`} value={state[topLevelKey][level1Key][level2Key]}
+                                  onChange={updateForm}
+                                ></Input>
+                              )
+
+                            } else if (isArray(state[topLevelKey][level1Key][level2Key])) {
+                              return (
+                                <Box key={level2Key}>
+                                  <ul>
+                                    {
+                                      state[topLevelKey][level1Key][level2Key].map((level3Item, level3Index) => {
+                                        return (
+                                          <Styled.li key={level3Index}>
+                                            <Input sx={{mr: 2}} placeholder={level2Key.toUpperCase()} name={`${topLevelKey}.${level1Key}.${level2Key}.${level3Index}`} value={state[topLevelKey][level1Key][level2Key][level3Index]} onChange={updateForm}></Input>
+                                            <Button sx={{height:'max-content'}} variant="elevated" onClick={e => removeItem(topLevelKey, level1Index, level2Key, level3Item)}>x</Button>
+                                          </Styled.li>
+                                        )
+                                      })
+                                    }
+                                    <Button variant="elevated" onClick={e => addItem(topLevelKey, level1Index, level2Key)}>+</Button>
+                                  </ul>
+                                </Box>
+                              )
+                            }
+                          })
+                        }
+
+                      </Box>
+                    )
 
                   } else if (isArray(state[topLevelKey][level1Key])) {
                     return (
@@ -120,18 +183,23 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                                       ></Input>
                                     })
                                   }
-                                  <Button variant="elevated" onClick={e => removeProfiles(level1ArrayIndex)}>Remove {level1Key} </Button>
+                                  <Button variant="elevated" onClick={e => removeProfiles(level1ArrayIndex)}>Remove {capitalize(singularize(level1Key))} </Button>
                                 </Box>
                               )
                             }
                           })
                         }
-                        <Button variant="elevated" onClick={addProfiles}>Add {level1Key} </Button>
+                        <Button variant="elevated" onClick={addProfiles}>Add {capitalize(singularize(level1Key))} </Button>
                       </Box>
                     )
                   }
 
                 })
+              }
+
+              {
+                isArray(state[topLevelKey]) ?
+                <Button variant="elevated" onClick={e => addSection(topLevelKey)}>Add {capitalize(singularize(topLevelKey))} </Button> : ''
               }
               <Divider bg='gray.4' mx='0'></Divider>
               {/**end state[topLevelKey] */}
