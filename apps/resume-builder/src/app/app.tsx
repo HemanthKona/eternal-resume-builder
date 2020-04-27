@@ -2,6 +2,7 @@
 import React, { createContext, useState, useContext } from 'react';
 
 // eternal
+/** @jsx jsx */
 import { jsx, Box, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
 
 // config
@@ -47,7 +48,7 @@ export const App = () => {
             <ResumeBuilderForms></ResumeBuilderForms>
           </Grid>
           {/* Right side toolbar */}
-          <Flex sx={{flexDirection: 'column'}} bg='gray.7' >
+          <Flex sx={{flexDirection: 'column', minHeight: '100vh'}} bg='gray.7' >
             <Button variant="elevated"> {'</>'} </Button>
           </Flex>
         </Grid>
