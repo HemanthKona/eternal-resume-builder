@@ -7,6 +7,10 @@ import {
 
 export default {
   ...tailwind,
+  colors: {
+    ...tailwind.colors,
+    primary: '#333',
+  },
   forms: {
     ...tailwind.forms,
     input: {
@@ -17,7 +21,13 @@ export default {
     ...tailwind.styles,
     li: {
       display: 'flex'
+    },
+    ".someheader": {
+      color: 'white'
     }
+  },
+  ".someheader": {
+    color: 'white'
   }
 }
 
@@ -46,4 +56,14 @@ export {
  green: {
    primary: #0a8e83
  }
+ */
+/**
+ colors_red_shade: {
+  background | primary_light: '#C26D6D',
+  primary_darkk: '#A55555',
+  text: '#F6D1E5',
+  text:
+ }
+ *
+ *
  */

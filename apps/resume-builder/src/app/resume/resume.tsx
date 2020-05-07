@@ -5,18 +5,19 @@ import { jsx, Box, Divider, Heading, Grid, Styled, Text } from 'theme-ui';
 
 // internal
 import { ResumeContext } from '../app.context';
-import { SSL_OP_ALL } from 'constants';
+import { sample } from '@eternal-resume-builder/data';
 
 /* eslint-disable-next-line */
 export interface ResumeProps {}
 
 export const Resume = (props: ResumeProps) => {
-  const [state] = useContext(ResumeContext);
+  // const [state] = useContext(ResumeContext);
+  const state = sample;
 
   return (
     <Grid gap={2} m='2' sx={{ boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>
       <Grid gap={2} columns={['1fr']}>
-        <Box bg='gray.4' p='5'>
+        <Box p='5'>
           <Heading as="h1">{state.basics.name}</Heading>
           <Heading as="h2">{state.basics.label}</Heading>
           <Text as="h4">{state.basics.email}</Text>

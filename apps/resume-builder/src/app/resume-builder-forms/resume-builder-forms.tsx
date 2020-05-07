@@ -6,7 +6,9 @@ import {
   Button,
   Divider,
   Heading,
+  Field,
   Input,
+  Label,
   Styled
 } from 'theme-ui';
 import { set, unset } from 'lodash';
@@ -111,21 +113,22 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
   }
 
   return (
-    <Box bg={'gray.3'} p={'3'} sx={{ marginTop: '1rem', overflowY: 'scroll'}}>
-      <Heading as="h3">Resume Builder</Heading>
+    <Box {...props} bg={'gray.3'} p={'3'} sx={{overflowY: 'scroll'}}>
+      <Heading className="someheader" as="h3">Resume Builder</Heading>
       {
         Object.keys(state).map((topLevelKey, topLevelIndex) => {
           return (
             <div id={topLevelKey} key={topLevelIndex}>
               {/** state.baiscs */}
-              <Heading as="h2" key={topLevelIndex} pt='4' pb='3'> {capitalize(topLevelKey)} </Heading>
+              <Heading as="h4" key={topLevelIndex} pt='4' pb='3'> {capitalize(topLevelKey)} </Heading>
               {
                 Object.keys(state[topLevelKey]).map((level1Key, level1Index) => {
                   if (isString(state[topLevelKey][level1Key])) {
                     return (
-                      <Input key={level1Index} placeholder={level1Key.toUpperCase()} name={`basics.${level1Key}`} value={state[topLevelKey][level1Key]}
+                      <Field key={level1Index} placeholder={level1Key.toUpperCase()} name={`basics.${level1Key}`}    defaultValue={state[topLevelKey][level1Key]}
+                        label={capitalize(level1Key)}
                         onChange={updateForm}
-                      ></Input>
+                      ></Field>
                     )
 
                   } else if (!isArray(state[topLevelKey][level1Key]) && isObject(state[topLevelKey][level1Key])) {
@@ -135,21 +138,25 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                           Object.keys(state[topLevelKey][level1Key]).map((level2Key, level2Index) => {
                             if (isString(state[topLevelKey][level1Key][level2Key])) {
                               return (
-                                <Input key={level2Index} placeholder={level2Key.toUpperCase()} name={`${topLevelKey}.${level1Key}.${level2Key}`} value={state[topLevelKey][level1Key][level2Key]}
+                                <Field key={level2Index} placeholder={level2Key.toUpperCase()} name={`${topLevelKey}.${level1Key}.${level2Key}`} defaultValue={state[topLevelKey][level1Key][level2Key]}
+                                  label={capitalize(level2Key)}
                                   onChange={updateForm}
-                                ></Input>
+                                ></Field>
                               )
 
                             } else if (isArray(state[topLevelKey][level1Key][level2Key])) {
                               return (
                                 <Box key={level2Key}>
+                                  <Label htmlFor={state[topLevelKey][level1Key][level2Key]}>{capitalize(level2Key)}</Label>
                                   <ul>
                                     {
                                       state[topLevelKey][level1Key][level2Key].map((level3Item, level3Index) => {
                                         return (
                                           <Styled.li key={level3Index}>
-                                            <Input sx={{mr: 2}} placeholder={level2Key.toUpperCase()} name={`${topLevelKey}.${level1Key}.${level2Key}.${level3Index}`} value={state[topLevelKey][level1Key][level2Key][level3Index]} onChange={updateForm}></Input>
-                                            <Button sx={{height:'max-content'}} variant="elevated" onClick={e => removeItem(topLevelKey, level1Index, level2Key, level3Item)}>x</Button>
+                                            <Input sx={{ flex: 1, mr: 1}} placeholder={level2Key.toUpperCase()} name={`${topLevelKey}.${level1Key}.${level2Key}.${level3Index}`} defaultValue={state[topLevelKey][level1Key][level2Key][level3Index]}
+                                              onChange={updateForm}>
+                                            </Input>
+                                            <Button sx={{height:'max-content', mt: '-1px'}} variant="elevated" onClick={e => removeItem(topLevelKey, level1Index, level2Key, level3Item)}>x</Button>
                                           </Styled.li>
                                         )
                                       })
@@ -161,14 +168,14 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                             }
                           })
                         }
-
+                        { level1Key !== 'location' ? <Button variant="elevated"> Remove {capitalize(singularize(topLevelKey))} </Button> : ``}
                       </Box>
                     )
 
                   } else if (isArray(state[topLevelKey][level1Key])) {
                     return (
                       <Box key={level1Index}>
-                        <Heading as="h3" py='2'>{capitalize(level1Key)}</Heading>
+                        <Heading as="h4" py='2'>{capitalize(level1Key)}</Heading>
                         {
                           state[topLevelKey][level1Key].map((level1ArrayItem, level1ArrayIndex) => {
                             // isString repeateable list
@@ -178,12 +185,15 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
                                 <Box key={level1ArrayIndex}>
                                   {
                                     Object.keys(level1ArrayItem).map((level2ObjectKey, level2ObjectIndex) => {
-                                      return <Input key={level2ObjectIndex} placeholder={level2ObjectKey.toUpperCase()} name={`basics.${level1Key}[${level1ArrayIndex}].${level2ObjectKey}`} value={state[topLevelKey][level1Key][level1ArrayIndex][level2ObjectKey]}
-                                        onChange={updateForm}
-                                      ></Input>
+                                      return (
+                                        <Field key={level2ObjectIndex} placeholder={level2ObjectKey.toUpperCase()} name={`basics.${level1Key}[${level1ArrayIndex}].${level2ObjectKey}`} defaultValue={state[topLevelKey][level1Key][level1ArrayIndex][level2ObjectKey]}
+                                          label={capitalize(level2ObjectKey)}
+                                          onChange={updateForm}
+                                        ></Field>
+                                      )
                                     })
                                   }
-                                  <Button variant="elevated" onClick={e => removeProfiles(level1ArrayIndex)}>Remove {capitalize(singularize(level1Key))} </Button>
+                                  <Button variant="elevated" sx={{float: 'right'}} onClick={e => removeProfiles(level1ArrayIndex)}>Remove {capitalize(singularize(level1Key))} </Button>
                                 </Box>
                               )
                             }
