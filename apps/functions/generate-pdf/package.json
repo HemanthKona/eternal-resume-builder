@@ -1,0 +1,22 @@
+{
+  "name": "generate-pdf",
+  "version": "0.0.1",
+  "description": "Generate pdf using Puppeter lamda, accepts HTML and css strings ",
+  "main": "generate-pdf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pdf",
+    "htmlToPDF"
+  ],
+  "author": "Hemanth Kona",
+  "license": "ISC",
+  "devDependencies": {
+    "puppeteer": "^3.0.3"
+  },
+  "dependencies": {
+    "chrome-aws-lambda": "^2.1.1",
+    "puppeteer-core": "^3.0.3"
+  }
+}
