@@ -1,6 +1,6 @@
 exports.handler = (event, context) => {
   return {
-    statusCode: 200,
+    statusCode: 201,
     body: "Hello func"
   }
 }
