@@ -5,10 +5,10 @@ exports.handler = async (event, context) => {
   // const pageToScreenshot = JSON.parse(event.body).pageToScreenshot;
   const pageToScreenshot = 'https://eternallife.live';
 
-  // if (!pageToScreenshot) return {
-  //   statusCode: 400,
-  //   body: JSON.stringify({ message: 'Page URL not defined' })
-  // }
+  if (!pageToScreenshot) return {
+    statusCode: 400,
+    body: JSON.stringify({ message: 'Page URL not defined' })
+  }
 
   const browser = await chromium.puppeteer.launch({
     args: chromium.args,
