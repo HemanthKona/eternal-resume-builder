@@ -18,5 +18,8 @@
   "dependencies": {
     "chrome-aws-lambda": "^2.1.1",
     "puppeteer-core": "^3.0.3"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.1"
   }
 }
