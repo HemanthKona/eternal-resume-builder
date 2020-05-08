@@ -1,2 +1,3 @@
 [build]
-  functions = "apps/functions"
+  command = "cd ./app/functions && npm i && cd ../../ && nx build resume-builder --prod"
+  functions = "./apps/functions"
