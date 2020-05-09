@@ -3,7 +3,7 @@ const chromium = require('chrome-aws-lambda');
 exports.handler = async (event, context) => {
 
   // const pageToScreenshot = JSON.parse(event.body).pageToScreenshot;
-  const pageToScreenshot = 'https://eternallife.live';
+  const pageToScreenshot = 'https://eternallife.live/hemanth';
 
   if (!pageToScreenshot) return {
     statusCode: 400,
