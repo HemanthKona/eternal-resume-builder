@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
   const pdf = await page.pdf({
     format: 'A4',
     printBackground: true,
-    margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' }
+    margin: { top: '32px', right: '32px', bottom: '32px', left: '32px' }
   });
 
   await browser.close();
