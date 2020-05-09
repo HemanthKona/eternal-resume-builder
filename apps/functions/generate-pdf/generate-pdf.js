@@ -28,9 +28,9 @@ exports.handler = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      test: 'test working'
-      // message: `Complete screenshot of ${pageToScreenshot}`,
-      // buffer: screenshot
+      test: 'test working',
+      message: `Complete screenshot of ${pageToScreenshot}`,
+      buffer: screenshot
     })
   }
 
