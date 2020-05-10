@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
 
   const page = await browser.newPage();
 
-  await page.addStyleTag(css);
+  await page.addStyleTag({content: css});
 
   await page.setContent(html);
 
