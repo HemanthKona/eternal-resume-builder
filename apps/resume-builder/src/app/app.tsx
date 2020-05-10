@@ -77,7 +77,7 @@ const menuItems = [{
 function downloadPDFLink(pdf) {
   const linkSource = `data:application/pdf;base64,${pdf}`;
   const downloadLink = document.createElement("a");
-  const fileName = "vct_illustration.pdf";
+  const fileName = "resume.pdf";
 
   downloadLink.href = linkSource;
   downloadLink.download = fileName;
@@ -102,12 +102,16 @@ const downloadPDF = () => {
 
   fetch('https://resume.eternallife.live/.netlify/functions/generate-pdf', {
     method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       html,
       css
     })
   }).then((res) => {
-    console.log(res);
+    console.log(res.json());
     if (res.body) downloadPDFLink(res.body);
   })
 }
