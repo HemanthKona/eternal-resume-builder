@@ -218,7 +218,6 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
         })
       }
 
-
     </Box>
   );
 };

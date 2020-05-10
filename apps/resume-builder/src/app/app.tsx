@@ -6,7 +6,6 @@ import ReactDOMServer from 'react-dom/server';
 import { jsx, Box, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  } from '@fortawesome/fontawesome-svg-core';
 import { faInfo, faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 
 // config
@@ -68,6 +67,33 @@ const menuItems = [{
   show: false
 }];
 
+const downloadPDF = () => {
+  let css = '';
+  let html = '';
+
+  const styles = Array.from(document.getElementsByTagName("style"));
+  for (const style of styles) {
+    if (style.type !== 'text/css') {
+      css += style.outerHTML;
+    }
+  }
+  console.log(css);
+  // console.log(css.length)
+
+  html = document.getElementById('et-resume').outerHTML;
+  console.log(html);
+
+  fetch('https://resume.eternallife.live/.netlify/functions/generate-pdf', {
+    method: 'post',
+    body: JSON.stringify({
+      html,
+      css
+    })
+  }).then((res) => {
+    console.log(res);
+  })
+}
+
 export const App = () => {
   const [view, setView] = useState({
     ...defaultView,
@@ -83,14 +109,6 @@ export const App = () => {
     })
   }
 
-  const generateHTML = () => {
-    document.querySelectorAll("[data-emotion='css']").forEach((style) => {
-      console.log(style.outerHTML);
-    });
-    console.log(ReactDOMServer.renderToString(<Resume></Resume>));
-    // console.log(renderStylesToString(<Resume></Resume>));
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <ResumeProvider>
@@ -100,7 +118,7 @@ export const App = () => {
               <Resume></Resume>
               <Box sx={{ bg: 'gray.3', height: '100vh', overflow: 'scroll' }}>
                 {
-                  (view.about) ? <About gotoView={updateCurrentView} pdf={generateHTML}></About> :
+                  (view.about) ? <About gotoView={updateCurrentView} pdf={downloadPDF}></About> :
                     ((view.forms) ? <ResumeBuilderForms></ResumeBuilderForms> :
                       ((view.code) ? <ShowJsonOutput></ShowJsonOutput> : ''))
                 }
@@ -108,11 +126,11 @@ export const App = () => {
             </Grid>
           </Grid>
           {/* Right side toolbar */}
-          <Flex sx={{flexDirection: 'column', minHeight: '100%', '> Button': { mb: '2'}}} bg='gray.5' >
+          <Flex sx={{flexDirection: 'column', '> Button': { mb: '2'}}} bg='gray.5' >
             {
-              menuItems.map((item) =>
+              menuItems.map((item, index) =>
                 item.show ?
-                  <Button bg={view[item.name] ? 'gray.6': 'gray.4'}
+                  <Button key={index} bg={view[item.name] ? 'gray.6': 'gray.4'}
                     onClick={e => updateCurrentView(item.name)}>
                       {/* { view[item.name] ? <span > {`.`} </span> : `` } */}
                       { item.faIcon ? <FontAwesomeIcon icon={item.faIcon} /> : `` }
