@@ -67,6 +67,23 @@ const menuItems = [{
   show: false
 }];
 
+/**
+ * Creates an anchor element `<a></a>` with
+ * the base64 pdf source and a filename with the
+ * HTML5 `download` attribute then clicks on it.
+ * @param  {string} pdf
+ * @return {void}
+ */
+function downloadPDFLink(pdf) {
+  const linkSource = `data:application/pdf;base64,${pdf}`;
+  const downloadLink = document.createElement("a");
+  const fileName = "vct_illustration.pdf";
+
+  downloadLink.href = linkSource;
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
+
 const downloadPDF = () => {
   let css = '';
   let html = '';
@@ -91,6 +108,7 @@ const downloadPDF = () => {
     })
   }).then((res) => {
     console.log(res);
+    if (res.body) downloadPDFLink(res.body);
   })
 }
 
