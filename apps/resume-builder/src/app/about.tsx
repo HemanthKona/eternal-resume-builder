@@ -40,9 +40,9 @@ export const About = (props: AboutProps) => {
   return (
     <Flex sx={{flexDirection: 'column', px: 4, py: 3}}>
       <h1>About</h1>
-      <p>
-        Experimental resume builder using CSS Grid for layout.
-      </p>
+      <h3>
+        [Work In Progress] resume builder.
+      </h3>
       {/* <Button sx={{width: "100%"}} variant="elevated" mb='2' onClick={e => props.gotoView('forms')}> Edit Resume </Button>
       <Button sx={{width: "100%"}} variant="elevated" mb='2' onClick={e => props.gotoView('code')}> Export Resume </Button> */}
       {/* <Button variant="elevated" onClick={e => props.pdf()}> Generate HTML </Button> */}
