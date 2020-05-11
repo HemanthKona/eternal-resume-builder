@@ -119,7 +119,8 @@ const downloadPDF = () => {
     })
   }).then((res) => {
     console.log(res.json());
-    if (res.body) downloadPDFLink(res.body);
+    console.log();
+    // if (res.body) downloadPDFLink(res.body);
   })
 }
 
