@@ -100,7 +100,13 @@ const downloadPDF = () => {
   html = document.getElementById('et-resume').outerHTML;
   console.log(html);
 
-  fetch('https://resume.eternallife.live/.netlify/functions/generate-pdf', {
+  let pdfFuncUrl = 'http://localhost:8888/.netlify/functions/generate-pdf';
+
+  if (window.location.hostname.indexOf('localhost') === -1) {
+    pdfFuncUrl = 'https://resume.eternallife.live/.netlify/functions/generate-pdf'
+  }
+
+  fetch(pdfFuncUrl, {
     method: 'post',
     headers: {
       'Accept': 'application/json',
@@ -108,7 +114,8 @@ const downloadPDF = () => {
     },
     body: JSON.stringify({
       html,
-      css
+      css,
+      test: 'test'
     })
   }).then((res) => {
     console.log(res.json());
