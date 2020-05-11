@@ -1,55 +1,30 @@
-const chromium = require('chrome-aws-lambda')
-const puppeteer = require('puppeteer-core')
+const chromium = require('chrome-aws-lambda');
 
 exports.handler = async (event, context, callback) => {
-  let theTitle = null
-  let browser = null
-  console.log('spawning chrome headless')
-  try {
-    const executablePath = await chromium.executablePath
+  let result = null;
+  let browser = null;
 
-    // setup
-    browser = await puppeteer.launch({
+  try {
+    browser = await chromium.puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: undefined,
+      executablePath: await chromium.executablePath,
       headless: chromium.headless,
-    })
+      ignoreHTTPSErrors: true,
+    });
 
-    // Do stuff with headless chrome
-    const page = await browser.newPage()
-    const targetUrl = 'https://davidwells.io'
+    let page = await browser.newPage();
 
-    // Goto page and then do stuff
-    await page.goto(targetUrl, {
-      waitUntil: ["domcontentloaded", "networkidle0"]
-    })
+    await page.goto('https://resume.eternallife.live');
 
-    await page.waitForSelector('#phenomic')
-
-    theTitle = await page.title();
-
-    console.log('done on page', theTitle)
-
+    result = await page.title();
   } catch (error) {
-    console.log('error', error)
-    return callback(null, {
-      statusCode: 500,
-      body: JSON.stringify({
-        error: error
-      })
-    })
+    return callback(error);
   } finally {
-    // close browser
     if (browser !== null) {
-      await browser.close()
+      await browser.close();
     }
   }
 
-  return callback(null, {
-    statusCode: 200,
-    body: JSON.stringify({
-      title: theTitle,
-    })
-  })
-}
+  return callback(null, result);
+};
