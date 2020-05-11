@@ -20,6 +20,7 @@
     "puppeteer-core": "^3.0.3"
   },
   "optionalDependencies": {
+    "iltorb": "^2.4.5",
     "bufferutil": "^4.0.1",
     "utf-8-validate": "^5.0.2"
   }

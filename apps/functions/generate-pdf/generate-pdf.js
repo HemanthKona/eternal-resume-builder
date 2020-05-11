@@ -1,68 +1,55 @@
-const chromium = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer-core');
+const chromium = require('chrome-aws-lambda')
+const puppeteer = require('puppeteer-core')
 
-exports.handler = async (event, context) => {
+exports.handler = async (event, context, callback) => {
+  let theTitle = null
+  let browser = null
+  console.log('spawning chrome headless')
+  try {
+    const executablePath = await chromium.executablePath
 
-  // Recieved body
-  let html = '';
-  let css = '';
-  let test = '';
-  console.log("Start Function");
-  // console.log(event);
-  if (event.body) {
-    const body = JSON.parse(event.body);
-    console.log(body);
-    html = body.html
-    css = body.css;
-    test = body.test;
-  }
+    // setup
+    browser = await puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: undefined,
+      headless: chromium.headless,
+    })
 
-  // Error Respone
-  if (!html || !css) {
-    return {
-      statusCode: 400,
-      // headers: {
-      //   'Access-Control-Allow-Origin': '*',
-      //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-      // },
-      body: JSON.stringify({ message: 'HTML or CSS is not found' })
+    // Do stuff with headless chrome
+    const page = await browser.newPage()
+    const targetUrl = 'https://davidwells.io'
+
+    // Goto page and then do stuff
+    await page.goto(targetUrl, {
+      waitUntil: ["domcontentloaded", "networkidle0"]
+    })
+
+    await page.waitForSelector('#phenomic')
+
+    theTitle = await page.title();
+
+    console.log('done on page', theTitle)
+
+  } catch (error) {
+    console.log('error', error)
+    return callback(null, {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: error
+      })
+    })
+  } finally {
+    // close browser
+    if (browser !== null) {
+      await browser.close()
     }
   }
 
-  const browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
-  });
-
-  // const page = await browser.newPage();
-
-  // // await page.addStyleTag({content: css});
-
-  // await page.setContent(html);
-
-  // const pdf = await page.pdf({
-  //   format: 'A4',
-  //   printBackground: true
-  // });
-
-  // await browser.close();
-console.log("HTML 99999ksjdhkfshdkf sjkdfhk sdfh slkdf ls fsldfhs df ")
-  console.log(html);
-  return {
-    headers: {
-      // 'Content-type': 'application/pdf',
-      // 'content-disposition': 'attachment; filename=test.pdf',
-      // 'Access-Control-Allow-Origin': '*',
-      // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-    },
+  return callback(null, {
     statusCode: 200,
     body: JSON.stringify({
-      text: test
-    }),
-    // body: pdf.toString('base64'),
-    // isBase64Encoded: true
-  }
-
+      title: theTitle,
+    })
+  })
 }
