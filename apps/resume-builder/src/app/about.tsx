@@ -33,7 +33,7 @@ const menuItems = [{
   title: 'Export PDF',
   faIcon: faDownload,
   prop: 'pdf',
-  show: window.location.hostname.indexOf('localhost') !== -1 ? true : false
+  show: true
 }]
 
 export const About = (props: AboutProps) => {

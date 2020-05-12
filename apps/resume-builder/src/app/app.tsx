@@ -129,11 +129,13 @@ const downloadPDF = () => {
   const browserless = new PhantomjsCloud.BrowserApi('ak-597kx-aa6bc-nbeb1-mnh81-26kdk');
   console.log(browserless);
 
-  browserless.requestSingle({
+  const pdfDownloadRequest = {
     url: "http://localhost/blank",
     content,
     renderType: "pdf"
-  }, (err, userResponse) => {
+  }
+
+  browserless.requestSingle(pdfDownloadRequest, (err, userResponse) => {
     //can use a callback like this example, or a Promise (see the Typescript example below)
     if (err != null) {
         throw err;
