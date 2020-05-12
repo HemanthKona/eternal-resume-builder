@@ -55,6 +55,11 @@ const menuItems = [{
   show: true
 },
 {
+  name: 'theme',
+  title: 'Themes',
+  show: false
+},
+{
   name: 'code',
   title: 'Code',
   icon: '</>',
