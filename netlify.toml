@@ -2,4 +2,3 @@
   command = "cd ./apps/functions && npm i && cd ../../ && nx build resume-builder --prod"
   functions = "./apps/functions"
   publish = "dist/apps/resume-builder"
-  environment = { AWS_LAMBDA_FUNCTION_NAME = "./apps/functions/generate-pdf/generate-pdf.js" }
