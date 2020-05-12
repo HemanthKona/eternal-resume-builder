@@ -22,5 +22,5 @@
       "@eternal-resume-builder/data": ["libs/data/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp", "apps/functions"]
 }

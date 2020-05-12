@@ -11,8 +11,8 @@ import { sample } from '@eternal-resume-builder/data';
 export interface ResumeProps {}
 
 export const Resume = (props: ResumeProps) => {
-  // const [state] = useContext(ResumeContext);
-  const state = sample;
+  const [state] = useContext(ResumeContext);
+  // const state = sample;
 
   return (
     <Grid gap={2} m='2' sx={{ width: '960px', boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>

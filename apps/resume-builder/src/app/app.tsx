@@ -6,7 +6,7 @@ import { jsx, Box, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 
-import * as PhantomjsCloud from 'phantomjscloud';
+import * as PhantomjsCloud from 'phantomjscloud-lite';
 
 // config
 import theme from './app.theme';
@@ -85,8 +85,9 @@ function downloadPDFLink(pdf) {
 }
 
 const downloadPDF = () => {
-  let css = '';
-  let html = '';
+  let css = "";
+  let html = "";
+  let content = "";
 
   const styles = Array.from(document.getElementsByTagName("style"));
   for (const style of styles) {
@@ -94,11 +95,13 @@ const downloadPDF = () => {
       css += style.outerHTML;
     }
   }
-  console.log(css);
+  // console.log(css);
   // console.log(css.length)
 
   html = document.getElementById('et-resume').outerHTML;
-  console.log(html);
+  // console.log(html);
+
+  content = css + html;
 
   let pdfFuncUrl = 'http://localhost:8888/.netlify/functions/generate-pdf';
 
@@ -123,7 +126,26 @@ const downloadPDF = () => {
   //   // if (res.body) downloadPDFLink(res.body);
   // })
 
-  // const browser = new PhantomjsCloud.BrowserApi('ak-597kx-aa6bc-nbeb1-mnh81-26kdk');
+  const browserless = new PhantomjsCloud.BrowserApi('ak-597kx-aa6bc-nbeb1-mnh81-26kdk');
+  console.log(browserless);
+
+  browserless.requestSingle({
+    url: "http://localhost/blank",
+    content,
+    renderType: "pdf"
+  }, (err, userResponse) => {
+    //can use a callback like this example, or a Promise (see the Typescript example below)
+    if (err != null) {
+        throw err;
+    }
+
+    // Download pdf resume to user system
+    if (userResponse.content && userResponse.content.data) {
+      downloadPDFLink(userResponse.content.data);
+    } else {
+      console.error("Error downloading pdf");
+    }
+  });
 
 }
 
