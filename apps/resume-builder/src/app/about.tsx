@@ -1,10 +1,10 @@
 import React from 'react';
 
 /** @jsx jsx */
-import { jsx, Button, Flex } from 'theme-ui';
+import { jsx, Box, Button, Flex } from 'theme-ui';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfo, faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 
 /* eslint-disable-next-line */
 export interface AboutProps {
@@ -33,16 +33,18 @@ const menuItems = [{
   title: 'Export PDF',
   faIcon: faDownload,
   prop: 'pdf',
-  show: window.location.hostname.indexOf('localhost') ? true : false
+  show: window.location.hostname.indexOf('localhost') !== -1 ? true : false
 }]
 
 export const About = (props: AboutProps) => {
   return (
-    <Flex sx={{flexDirection: 'column', px: 4, py: 3}}>
+    <Flex sx={{flexDirection: 'column', height: '100%', px: 4, py: 3}}>
       <h1>About</h1>
       <h3>
-        [Work In Progress] resume builder.
+        [Work In Progress] <br />
+        Resume Builder.
       </h3>
+      <Box sx={{flexGrow: 1}}></Box>
       {/* <Button sx={{width: "100%"}} variant="elevated" mb='2' onClick={e => props.gotoView('forms')}> Edit Resume </Button>
       <Button sx={{width: "100%"}} variant="elevated" mb='2' onClick={e => props.gotoView('code')}> Export Resume </Button> */}
       {/* <Button variant="elevated" onClick={e => props.pdf()}> Generate HTML </Button> */}
