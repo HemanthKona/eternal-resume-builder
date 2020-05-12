@@ -1,12 +1,12 @@
 import React, { createContext, useState, useContext } from 'react';
-import ReactDOMServer from 'react-dom/server';
-// import { renderStylesToString } from 'emotion-server'
 
 /** @jsx jsx */
 import { jsx, Box, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+
+import * as PhantomjsCloud from 'phantomjscloud';
 
 // config
 import theme from './app.theme';
@@ -100,30 +100,31 @@ const downloadPDF = () => {
   html = document.getElementById('et-resume').outerHTML;
   console.log(html);
 
-  let pdfFuncUrlLocal = 'http://localhost:8888/.netlify/functions/generate-pdf';
+  let pdfFuncUrl = 'http://localhost:8888/.netlify/functions/generate-pdf';
 
   if (window.location.hostname.indexOf('localhost') === -1) {
-    pdfFuncUrlLocal = 'https://resume.eternallife.live/.netlify/functions/generate-pdf'
+    pdfFuncUrl = 'https://resume.eternallife.live/.netlify/functions/generate-pdf'
   }
 
-  const pdfFuncUrl = '';
+  // fetch(pdfFuncUrl, {
+  //   method: 'post',
+  //   headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({
+  //     html,
+  //     css,
+  //     test: 'test'
+  //   })
+  // }).then((res) => {
+  //   console.log(res.json());
+  //   console.log();
+  //   // if (res.body) downloadPDFLink(res.body);
+  // })
 
-  fetch(pdfFuncUrl, {
-    method: 'post',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      html,
-      css,
-      test: 'test'
-    })
-  }).then((res) => {
-    console.log(res.json());
-    console.log();
-    // if (res.body) downloadPDFLink(res.body);
-  })
+  // const browser = new PhantomjsCloud.BrowserApi('ak-597kx-aa6bc-nbeb1-mnh81-26kdk');
+
 }
 
 export const App = () => {
