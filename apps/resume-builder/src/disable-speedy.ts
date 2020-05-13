@@ -5,4 +5,5 @@ import { sheet } from 'emotion'
 // speedy is significantly faster though so it should only be disabled during prerendering
 // if (!document.getElementById('root').hasChildNodes()) {
   sheet.isSpeedy = false;
+  sheet.speedy(false);
 // }
