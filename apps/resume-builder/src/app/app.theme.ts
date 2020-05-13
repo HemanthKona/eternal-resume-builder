@@ -11,6 +11,10 @@ export default {
     ...tailwind.colors,
     primary: '#333',
   },
+  fonts: {
+    ...tailwind.fonts,
+
+  },
   forms: {
     ...tailwind.forms,
     input: {
