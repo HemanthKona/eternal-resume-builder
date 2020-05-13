@@ -1,6 +1,6 @@
 // import './disable-speedy'
 
-import { CacheProvider, jsx, css } from '@emotion/core'
+import { CacheProvider, jsx } from '@emotion/core'
 import createCache from '@emotion/cache'
 
 import React from 'react';
@@ -10,6 +10,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app/app';
 
 const cache = createCache({
+  nonce: 'et',
+  key: 'et-css',
   speedy: false
 })
 

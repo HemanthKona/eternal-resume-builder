@@ -52,7 +52,6 @@ export const downloadPDF = () => {
     renderSettings: {
       emulateMedia: "print",
       pdfOptions: {
-        format: "a4",
 
       }
     }

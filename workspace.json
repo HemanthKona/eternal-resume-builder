@@ -10,7 +10,7 @@
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
-            "outputPath": "dist/apps/resume-builder",
+            "outputPath": "apps/resume-builder/publish",
             "index": "apps/resume-builder/src/index.html",
             "main": "apps/resume-builder/src/main.tsx",
             "polyfills": "apps/resume-builder/src/polyfills.ts",
