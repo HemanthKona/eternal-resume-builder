@@ -1,4 +1,5 @@
 [build]
   # command = "cd ./apps/functions && npm i && cd ../../ && nx build resume-builder --prod"
+  command = "nx build resume-builder --prod"
   # functions = "./apps/functions"
   publish = "dist/apps/resume-builder"
