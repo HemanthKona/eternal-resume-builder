@@ -19,7 +19,8 @@
       "@eternal-resume-builder/api-interfaces": [
         "libs/api-interfaces/src/index.ts"
       ],
-      "@eternal-resume-builder/data": ["libs/data/src/index.ts"]
+      "@eternal-resume-builder/data": ["libs/data/src/index.ts"],
+      "@eternal-resume-builder/util": ["libs/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "apps/functions"]
