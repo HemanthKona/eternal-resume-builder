@@ -13,7 +13,7 @@ export default {
   },
   fonts: {
     ...tailwind.fonts,
-    body: 'Lato'
+    body: "Spectral, Lato"
   },
   forms: {
     ...tailwind.forms,
