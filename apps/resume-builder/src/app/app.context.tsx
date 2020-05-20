@@ -1,11 +1,33 @@
 import React, { createContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { sample, ResumeSchema } from '@eternal-resume-builder/data';
+
+import { sample, hem, ResumeSchema } from '@eternal-resume-builder/data';
+
+// A custom hook that builds on useLocation to parse
+// the query string for you.
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+interface AppSettings {
+  theme: string;
+}
+
+const initSettings: AppSettings = {
+  theme: 'default'
+}
 
 const ResumeContext = createContext<any>({});
+const AppSettingsContext = createContext<any>(initSettings);
 
 const ResumeProvider = props => {
-  const [state, setState] = useState<ResumeSchema>(sample);
+  let resumeData = sample;
+  const query = useQuery();
+
+  query.get('id') === 'hem' ? resumeData = hem : resumeData = sample ;
+
+  const [state, setState] = useState<ResumeSchema>(resumeData);
 
   // const api = resumeApi(state, setState);
 
@@ -16,6 +38,23 @@ const ResumeProvider = props => {
     <ResumeContext.Provider value={resumeApi} {...props}>
 
     </ResumeContext.Provider>
+  )
+}
+
+const AppSettingsProvider = props => {
+  const settings: any = JSON.parse(JSON.stringify(initSettings));
+
+  const query = useQuery();
+  query.get('theme') === 'nord' ? settings.theme = 'nord' : settings.theme = 'default' ;
+
+  const [state, setState] = useState<AppSettings>(settings);
+
+   const settingsApi = [state, setState] ;
+
+  return (
+    <AppSettingsContext.Provider value={settingsApi} {...props}>
+
+    </AppSettingsContext.Provider>
   )
 }
 
@@ -34,5 +73,7 @@ const ResumeProvider = props => {
 
 export {
   ResumeContext,
-  ResumeProvider
+  ResumeProvider,
+  AppSettingsContext,
+  AppSettingsProvider
 }

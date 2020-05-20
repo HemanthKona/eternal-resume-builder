@@ -1,16 +1,10 @@
 import {
-  base,
-  roboto,
-  bulma,
   tailwind
 } from '@theme-ui/presets';
 
-export default {
+
+const theme  = {
   ...tailwind,
-  colors: {
-    ...tailwind.colors,
-    primary: '#333',
-  },
   fonts: {
     ...tailwind.fonts,
     body: "Spectral, Lato"
@@ -35,12 +29,10 @@ export default {
   }
 }
 
+
 // may be use these
-export {
-  base,
-  roboto,
-  bulma
-}
+export default theme;
+
 
 
 /**

@@ -1,10 +1,14 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 /** @jsx jsx */
 import { jsx, Box, Button, Flex } from 'theme-ui';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+
+// components
+import { EtNav } from './components/et-nav';
 
 /* eslint-disable-next-line */
 export interface AboutProps {

@@ -1,23 +1,25 @@
 import React, {  useState } from 'react';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 /** @jsx jsx */
-import { jsx, Box, Button, Flex, Grid, ThemeProvider } from 'theme-ui';
+import { jsx, css, Box, Flex, Grid, ThemeProvider } from 'theme-ui';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 
-// config
-import theme from './app.theme';
-
 // libs
-import { ResumeProvider } from './app.context';
+import { theme } from '@eternal-resume-builder/themes';
+import { ResumeProvider, AppSettingsProvider } from './app.context';
 import { downloadPDF } from '@eternal-resume-builder/util';
 
 // components
+import { EtNav } from './components/et-nav';
+
 import { About } from './about';
 import { Resume } from './resume';
 import { ShowJsonOutput } from './show-json-output';
 import { ResumeBuilderForms } from './resume-builder-forms';
+import { Designx } from './designx';
 
 const defaultView = {
   about: false,
@@ -54,6 +56,12 @@ const menuItems = [{
   title: 'Export',
   faIcon: faDownload,
   show: false
+},
+{
+  name: 'designx',
+  title: 'DesignX',
+  icon: '>>>',
+  show: true
 }];
 
 export const App = () => {
@@ -73,37 +81,50 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ResumeProvider>
-        <Grid gap={0} columns={['auto 60px']}>
-          <Grid gap={0} sx={{gridTemplateRows:'100vh'}}>
-            <Grid gap={2} columns={grid}>
-              <Resume></Resume>
-              <Box sx={{ bg: 'gray.3', height: '100vh', overflow: 'scroll' }}>
-                {
-                  (view.about) ? <About gotoView={updateCurrentView} pdf={downloadPDF}></About> :
-                    ((view.forms) ? <ResumeBuilderForms></ResumeBuilderForms> :
-                      ((view.code) ? <ShowJsonOutput></ShowJsonOutput> : ''))
-                }
-              </Box>
+      <AppSettingsProvider>
+        <ResumeProvider>
+          <Grid gap={0} columns={['auto 60px']}>
+            <Grid gap={0} sx={{gridTemplateRows:'100vh'}}>
+              <Grid gap={2} columns={grid}>
+                <Resume></Resume>
+                <Box sx={{ bg: 'gray.3', height: '100vh', overflow: 'scroll' }}>
+                  <Switch>
+                    <Route path="/about">
+                      <About gotoView={updateCurrentView} pdf={downloadPDF}></About>
+                    </Route>
+                    <Route path="/forms">
+                      <ResumeBuilderForms></ResumeBuilderForms>
+                    </Route>
+                    <Route path="/code">
+                      <ShowJsonOutput></ShowJsonOutput>
+                    </Route>
+                    <Route path="/designx">
+                      <Designx></Designx>
+                    </Route>
+                  </Switch>
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
-          {/* Right side toolbar */}
-          <Flex sx={{flexDirection: 'column', '> Button': { mb: '2'}}} bg='gray.5' >
-            {
-              menuItems.map((item, index) =>
-                item.show ?
-                  <Button key={index} bg={view[item.name] ? 'gray.6': 'gray.4'}
-                    onClick={e => updateCurrentView(item.name)}>
+            {/* Right side toolbar */}
+            <Flex sx={{
+              flexDirection: 'column'
+            }} bg='gray.5' >
+
+              {
+                menuItems.map((item, index) =>
+                  item.show ?
+                    <EtNav to={`/${item.name}`} key={index} activeStyle={{ background: theme.colors.red[6] }}>
                       {/* { view[item.name] ? <span > {`.`} </span> : `` } */}
                       { item.faIcon ? <FontAwesomeIcon icon={item.faIcon} /> : `` }
                       { item.icon ? item.icon  : `` }
-                  </Button>
-                  : ``
-              )
-            }
-          </Flex>
-        </Grid>
-      </ResumeProvider>
+                    </EtNav>
+                    : ``
+                )
+              }
+            </Flex>
+          </Grid>
+        </ResumeProvider>
+      </AppSettingsProvider>
     </ThemeProvider>
   );
 };

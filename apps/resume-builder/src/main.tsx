@@ -5,7 +5,7 @@ import createCache from '@emotion/cache'
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './app/app';
 
@@ -17,6 +17,8 @@ const cache = createCache({
 
 ReactDOM.render(
   <CacheProvider value={cache}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </CacheProvider>
   , document.getElementById('root'));
