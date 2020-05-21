@@ -13,15 +13,16 @@ export const nord = {
       color: 'primary'
     },
     heading2: {
-      color: 'primary',
-      border: '1px solid #333'
+      color: 'primary'
     },
     text: {
 
     }
   },
   styles: {
-
+    hr: {
+      height: 2
+    }
   }
 
 }

@@ -52,7 +52,8 @@ export const downloadPDF = () => {
     renderSettings: {
       emulateMedia: "print",
       pdfOptions: {
-
+        headerTemplate: '<div style="width: 100%; box-sizing: border-box; border: 5px solid #88C0D0;"><div>',
+        footerTemplate: '<div style="width: 100%; box-sizing: border-box; border: 5px solid #88C0D0;"><div>'
       }
     }
   }

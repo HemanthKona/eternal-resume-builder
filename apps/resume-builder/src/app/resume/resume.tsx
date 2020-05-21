@@ -25,7 +25,10 @@ export const Resume = (props: ResumeProps) => {
   return (
     <ThemeProvider theme={theme}>
       <Grid gap={2} m='2' sx={{ width: '960px', boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>
-        <Grid id='et-resume' gap={2} columns={['1fr']} sx={{border: settings.theme === 'nord' ?`5px solid ${theme.colors.primary}` : `none`}}>
+        <Grid id='et-resume' gap={2} columns={['1fr']} sx={{
+          borderLeft: settings.theme === 'nord' ?`5px solid ${theme.colors.primary}` : `none`,
+          borderRight: settings.theme === 'nord' ?`5px solid ${theme.colors.primary}` : `none`
+        }}>
           <Box p='5'>
             <Heading as="h1" variant="heading">{state?.basics?.name}</Heading>
             <Heading as="h2" variant="heading2">{state?.basics?.label}</Heading>
@@ -40,7 +43,7 @@ export const Resume = (props: ResumeProps) => {
 
             { state?.summary ?
               <>
-                <Divider></Divider>
+                <Divider variant="styles.hr"></Divider>
                 <Text as="p">{state?.basics?.summary}</Text>
               </> : ``
             }
