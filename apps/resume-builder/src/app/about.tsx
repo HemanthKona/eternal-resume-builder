@@ -8,12 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 
 // components
-import { EtNav } from './components/et-nav';
+import { EtLinkButton } from './components/et-link-button';
 
 /* eslint-disable-next-line */
 export interface AboutProps {
   gotoView: (v: string) => void;
   pdf: () => void;
+  theme: any;
 }
 
 const menuItems = [{
@@ -22,7 +23,8 @@ const menuItems = [{
   faIcon: faKeyboard,
   prop: 'gotoView',
   gotoView: 'forms',
-  show: true
+  show: true,
+  routerLink: true
 },
 {
   name: 'code',
@@ -30,14 +32,16 @@ const menuItems = [{
   icon: '</>',
   prop: 'gotoView',
   gotoView: 'code',
-  show: true
+  show: true,
+  routerLink: true
 },
 {
   name: 'pdf',
   title: 'Export PDF',
   faIcon: faDownload,
   prop: 'pdf',
-  show: true
+  show: false,
+  routerLink: false
 }]
 
 export const About = (props: AboutProps) => {
@@ -54,24 +58,35 @@ export const About = (props: AboutProps) => {
       {/* <Button variant="elevated" onClick={e => props.pdf()}> Generate HTML </Button> */}
       {
         menuItems.map((item, index) =>
-          item.show ?
-          <Button
-            key={index}
-            sx={{width: "100%"}}
-            variant="elevated"
-            mb='2'
-            onClick={e => {
-              return item.gotoView ? props[item.prop](item.gotoView) : props[item.prop]()
-            }}>
+          item.routerLink ?
+            <EtLinkButton to={`/${item.name}`} key={index}>
+              {/* { view[item.name] ? <span > {`.`} </span> : `` } */}
+              { item.faIcon ? <FontAwesomeIcon icon={item.faIcon} /> : `` }
+              { item.icon ? item.icon  : `` }
+              &nbsp;
+              {item.title}
+            </EtLinkButton>
+            :
+            <Button
+              key={index}
+              variant="elevated"
+              sx={{width: "100%", fontWeight: '700'}}
+              mt='2'
+              mb='2'
+              onClick={e => {
+                return item.gotoView ? props[item.prop](item.gotoView) : props[item.prop]()
+              }}>
 
-            { item.faIcon ? <FontAwesomeIcon icon={item.faIcon} /> : `` }
-            { item.icon ? item.icon  : `` }
-            &nbsp;
-            {item.title}
+              { item.faIcon ? <FontAwesomeIcon icon={item.faIcon} /> : `` }
+              { item.icon ? item.icon  : `` }
+              &nbsp;
+              {item.title}
 
-          </Button>
-            : ``
+            </Button>
         )
+
+
+
       }
 
     </Flex>

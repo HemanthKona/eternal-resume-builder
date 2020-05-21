@@ -90,7 +90,7 @@ export const App = () => {
                 <Box sx={{ bg: 'gray.3', height: '100vh', overflow: 'scroll' }}>
                   <Switch>
                     <Route path="/about">
-                      <About gotoView={updateCurrentView} pdf={downloadPDF}></About>
+                      <About theme={theme} gotoView={updateCurrentView} pdf={downloadPDF}></About>
                     </Route>
                     <Route path="/forms">
                       <ResumeBuilderForms></ResumeBuilderForms>
@@ -113,7 +113,7 @@ export const App = () => {
               {
                 menuItems.map((item, index) =>
                   item.show ?
-                    <EtNav to={`/${item.name}`} key={index} activeStyle={{ background: theme.colors.red[6] }}>
+                    <EtNav to={`/${item.name}`} key={index} theme={theme} activeStyle={{ background: theme.colors.red[6] }}>
                       {/* { view[item.name] ? <span > {`.`} </span> : `` } */}
                       { item.faIcon ? <FontAwesomeIcon icon={item.faIcon} /> : `` }
                       { item.icon ? item.icon  : `` }
