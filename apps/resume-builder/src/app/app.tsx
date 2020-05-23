@@ -6,7 +6,7 @@ import { jsx, css, Box, Flex, Grid, ThemeProvider } from 'theme-ui';
 import { EditorProvider, Theme } from '@theme-ui/editor'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfo, faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+import { faCode, faInfo, faDownload, faKeyboard, faPalette } from '@fortawesome/free-solid-svg-icons';
 
 // libs
 import { AppSettingsContext } from './app.context';
@@ -31,7 +31,7 @@ const defaultView = {
 }
 
 const menuItems = [{
-  name: 'about',
+  name: '',
   title: 'About',
   faIcon: faInfo,
   show: true
@@ -43,14 +43,9 @@ const menuItems = [{
   show: true
 },
 {
-  name: 'theme',
-  title: 'Themes',
-  show: false
-},
-{
   name: 'code',
   title: 'Code',
-  icon: '</>',
+  faIcon: faCode,
   show: true
 },
 {
@@ -62,7 +57,7 @@ const menuItems = [{
 {
   name: 'designx',
   title: 'DesignX',
-  icon: '>>>',
+  faIcon: faPalette,
   show: true
 }];
 
@@ -97,7 +92,7 @@ export const App = () => {
                 <Resume></Resume>
                 <Box sx={{ bg: 'gray.3', height: '100vh', overflow: 'scroll' }}>
                   <Switch>
-                    <Route path="/about">
+                    <Route exact path="/">
                       <About theme={theme} gotoView={updateCurrentView} pdf={downloadPDF}></About>
                     </Route>
                     <Route path="/forms">
