@@ -17,7 +17,8 @@
             "tsConfig": "apps/resume-builder/tsconfig.app.json",
             "assets": [
               "apps/resume-builder/src/favicon.ico",
-              "apps/resume-builder/src/assets"
+              "apps/resume-builder/src/assets",
+              "apps/resume-builder/src/_redirects"
             ],
             "styles": [],
             "scripts": [],
