@@ -1,9 +1,10 @@
-import { theme } from './default';
+import { defaultTheme } from './default';
+import { base } from '@theme-ui/presets';
+import merge from 'lodash.merge'
 
-export const nord = {
-  ...theme,
+
+export const nord = merge(defaultTheme, {
   colors: {
-    ...theme.colors,
     text: "#4c566a",
     primary: "#88C0D0",
     secondary: "#4C566A"
@@ -25,4 +26,4 @@ export const nord = {
     }
   }
 
-}
+})

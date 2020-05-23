@@ -1,14 +1,16 @@
-import React, {  useState } from 'react';
+import React, {  useState, useContext } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
 /** @jsx jsx */
 import { jsx, css, Box, Flex, Grid, ThemeProvider } from 'theme-ui';
+import { EditorProvider, Theme } from '@theme-ui/editor'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 
 // libs
-import { theme } from '@eternal-resume-builder/themes';
+import { AppSettingsContext } from './app.context';
+import { defaultTheme, nord } from '@eternal-resume-builder/themes';
 import { ResumeProvider, AppSettingsProvider } from './app.context';
 import { downloadPDF } from '@eternal-resume-builder/util';
 
@@ -65,6 +67,12 @@ const menuItems = [{
 }];
 
 export const App = () => {
+  const [settings, setSettings] = useContext(AppSettingsContext);
+
+  let theme = defaultTheme;
+
+  if (settings.theme === 'nord') theme = nord;
+
   const [view, setView] = useState({
     ...defaultView,
     about: true
@@ -81,7 +89,7 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppSettingsProvider>
+      <EditorProvider>
         <ResumeProvider>
           <Grid gap={0} columns={['auto 60px']}>
             <Grid gap={0} sx={{gridTemplateRows:'100vh'}}>
@@ -124,7 +132,7 @@ export const App = () => {
             </Flex>
           </Grid>
         </ResumeProvider>
-      </AppSettingsProvider>
+      </EditorProvider>
     </ThemeProvider>
   );
 };

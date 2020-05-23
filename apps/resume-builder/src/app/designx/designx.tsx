@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Box, Button } from 'theme-ui';
+import { Theme } from '@theme-ui/editor';
 
 import { AppSettingsContext } from '../app.context';
 
@@ -16,6 +17,8 @@ export const Designx = (props: DesignxProps) => {
 
       <Button variant="elevated" sx={{bg: settings.theme === 'default'? `gray.5` : ``}} mr="2" onClick={e => setSettings({theme: 'default'})}> Simple </Button>
       <Button variant="elevated" sx={{bg: settings.theme === 'nord'? `gray.5` : ``}} onClick={e => setSettings({theme: 'nord'})}> Nord </Button>
+
+      <Theme.Colors size={4}></Theme.Colors>
     </Box>
   );
 };

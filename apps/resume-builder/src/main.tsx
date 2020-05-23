@@ -9,6 +9,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './app/app';
 
+import { AppSettingsProvider } from './app/app.context';
+
 const cache = createCache({
   nonce: 'et',
   key: 'et-css',
@@ -17,8 +19,10 @@ const cache = createCache({
 
 ReactDOM.render(
   <CacheProvider value={cache}>
-    <Router>
-      <App />
-    </Router>
+      <Router>
+    <AppSettingsProvider>
+        <App />
+    </AppSettingsProvider>
+      </Router>
   </CacheProvider>
   , document.getElementById('root'));

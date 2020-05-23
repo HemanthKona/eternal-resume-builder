@@ -10,14 +10,6 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-interface AppSettings {
-  theme: string;
-}
-
-const initSettings: AppSettings = {
-  theme: 'default'
-}
-
 const ResumeContext = createContext<any>({});
 const AppSettingsContext = createContext<any>(initSettings);
 
@@ -41,6 +33,14 @@ const ResumeProvider = props => {
   )
 }
 
+interface AppSettings {
+  theme: string;
+}
+
+const initSettings: AppSettings = {
+  theme: 'default'
+}
+
 const AppSettingsProvider = props => {
   const settings: any = JSON.parse(JSON.stringify(initSettings));
 
@@ -49,7 +49,7 @@ const AppSettingsProvider = props => {
 
   const [state, setState] = useState<AppSettings>(settings);
 
-   const settingsApi = [state, setState] ;
+  const settingsApi = [state, setState] ;
 
   return (
     <AppSettingsContext.Provider value={settingsApi} {...props}>

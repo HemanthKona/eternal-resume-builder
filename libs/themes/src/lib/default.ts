@@ -4,22 +4,19 @@ import {
   bulma,
   tailwind
 } from '@theme-ui/presets';
+import merge from 'lodash.merge';
 
 
-export const theme  = {
-  ...tailwind,
+export const defaultTheme  = merge(tailwind, {
   fonts: {
-    ...tailwind.fonts,
     body: "Spectral, Lato"
   },
   forms: {
-    ...tailwind.forms,
     input: {
       mb: 3
     }
   },
   styles: {
-    ...tailwind.styles,
     li: {
       display: 'flex'
     },
@@ -30,4 +27,4 @@ export const theme  = {
   ".someheader": {
     color: 'white'
   }
-}
+})

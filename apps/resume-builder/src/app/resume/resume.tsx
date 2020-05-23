@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
 // external
-import { jsx, Box, Divider, Heading, Grid, Text, ThemeProvider } from 'theme-ui';
+import { jsx, Box, Divider, Heading, Grid, Text, useThemeUI } from 'theme-ui';
 
 // internal
 import { AppSettingsContext, ResumeContext } from '../app.context';
-import { theme as defaultTheme, nord } from '@eternal-resume-builder/themes';
+import { defaultTheme, nord } from '@eternal-resume-builder/themes';
 
 /* eslint-disable-next-line */
 export interface ResumeProps {}
@@ -13,21 +13,17 @@ export interface ResumeProps {}
 export const Resume = (props: ResumeProps) => {
   const [state] = useContext(ResumeContext);
   const [settings] = useContext(AppSettingsContext);
+  const context = useThemeUI();
   // const state = sample;
 
-  let theme = defaultTheme;
-
-  switch(settings.theme) {
-    case "default": theme = defaultTheme; break;
-    case "nord": theme = nord; break;
-  }
+  console.log("REsumex");
+  console.log(settings);
 
   return (
-    <ThemeProvider theme={theme}>
       <Grid gap={2} m='2' sx={{ width: '960px', boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>
         <Grid id='et-resume' gap={2} columns={['1fr']} sx={{
-          borderLeft: settings.theme === 'nord' ?`5px solid ${theme.colors.primary}` : `none`,
-          borderRight: settings.theme === 'nord' ?`5px solid ${theme.colors.primary}` : `none`
+          borderLeft: settings.theme === 'nord' ?`5px solid ${context.theme.colors.primary}` : `none`,
+          borderRight: settings.theme === 'nord' ?`5px solid ${context.theme.colors.primary}` : `none`
         }}>
           <Box p='5'>
             <Heading as="h1" variant="heading">{state?.basics?.name}</Heading>
@@ -35,7 +31,7 @@ export const Resume = (props: ResumeProps) => {
             <Text variant='text' as="h4">{state?.basics?.email}</Text>
             <Text as="h4">{state?.basics?.phone}</Text>
             <Text as="h4">{state?.basics?.website}</Text>
-            <Text as="p">{state?.basics?.location?.address}</Text>
+            <Text>{state?.basics?.location?.address}</Text>
             <Text as="p">{state?.basics?.location?.postalCode}</Text>
             <Text as="p">{state?.basics?.location?.city}</Text>
             <Text as="p">{state?.basics?.location?.countryCode}</Text>
@@ -313,7 +309,6 @@ export const Resume = (props: ResumeProps) => {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
 
   );
 };
