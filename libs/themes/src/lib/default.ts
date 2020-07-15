@@ -22,6 +22,9 @@ export const defaultTheme  = merge(tailwind, {
     },
     ".someheader": {
       color: 'white'
+    },
+    hr: {
+      height: 2
     }
   },
   ".someheader": {

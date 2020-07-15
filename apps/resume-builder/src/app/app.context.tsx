@@ -11,7 +11,6 @@ function useQuery() {
 }
 
 const ResumeContext = createContext<any>({});
-const AppSettingsContext = createContext<any>(initSettings);
 
 const ResumeProvider = props => {
   let resumeData = sample;
@@ -40,6 +39,8 @@ interface AppSettings {
 const initSettings: AppSettings = {
   theme: 'default'
 }
+
+const AppSettingsContext = createContext<any>(initSettings);
 
 const AppSettingsProvider = props => {
   const settings: any = JSON.parse(JSON.stringify(initSettings));

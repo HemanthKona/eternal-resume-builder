@@ -119,7 +119,7 @@ export const App = () => {
                     <EtNav to={`/${item.name}`} key={index} theme={theme} activeStyle={{ background: theme.colors.red[6] }}>
                       {/* { view[item.name] ? <span > {`.`} </span> : `` } */}
                       { item.faIcon ? <FontAwesomeIcon icon={item.faIcon} /> : `` }
-                      { item.icon ? item.icon  : `` }
+
                     </EtNav>
                     : ``
                 )

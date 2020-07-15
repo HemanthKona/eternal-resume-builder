@@ -16,6 +16,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*!
  * Determine if an object is a Buffer
  *
@@ -52,4 +61,4 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/*! For license information please see main.f04dd559766f8c0c7ac2.es5.js.LICENSE */
+/*! For license information please see main.d3c3c7254b6c1b4e8838.esm.js.LICENSE */
