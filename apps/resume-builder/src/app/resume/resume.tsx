@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 // external
-import { jsx, Box, Divider, Heading, Grid, Text, useThemeUI } from 'theme-ui';
+import { jsx, Box, Divider, Flex, Heading, Grid, Text, useThemeUI } from 'theme-ui';
 
 // internal
 import { AppSettingsContext, ResumeContext } from '../app.context';
@@ -22,20 +22,25 @@ export const Resume = (props: ResumeProps) => {
   return (
       <Grid gap={2} m='2' sx={{ width: '960px', boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>
         <Grid id='et-resume' gap={2} columns={['1fr']} sx={{
+          background: `${context.theme.colors.background}`,
           borderLeft: settings.theme === 'nord' ?`5px solid ${context.theme.colors.primary}` : `none`,
           borderRight: settings.theme === 'nord' ?`5px solid ${context.theme.colors.primary}` : `none`
         }}>
           <Box p='5'>
-            <Heading as="h1" variant="heading">{state?.basics?.name}</Heading>
-            <Heading as="h2" variant="heading2">{state?.basics?.label}</Heading>
-            <Text variant='text' as="h4">{state?.basics?.email}</Text>
-            <Text as="h4">{state?.basics?.phone}</Text>
-            <Text as="h4">{state?.basics?.website}</Text>
-            <Text>{state?.basics?.location?.address}</Text>
-            <Text as="p">{state?.basics?.location?.postalCode}</Text>
-            <Text as="p">{state?.basics?.location?.city}</Text>
-            <Text as="p">{state?.basics?.location?.countryCode}</Text>
-            <Text as="p">{state?.basics?.location?.region}</Text>
+            <Flex>
+              <Box sx={{ flex: '1 1 auto' }}>
+                <Heading as="h1" variant="heading">{state?.basics?.name}</Heading>
+                <Heading as="h2" variant="heading2">{state?.basics?.label}</Heading>
+                <Text as="span" sx={{ color: context.theme.colors.text }}>{state?.basics?.location?.city}</Text>, &nbsp;
+                <Text as="span" sx={{ color: context.theme.colors.text }}>{state?.basics?.location?.region}</Text>, &nbsp;
+                <Text as="span" sx={{ color: context.theme.colors.text }}>{state?.basics?.location?.countryCode}</Text>
+              </Box>
+              <Box sx={{ textAlign: 'end' }}>
+                <Text variant='text' as="h4">{state?.basics?.email}</Text>
+                <Text as="h4">{state?.basics?.phone}</Text>
+                <Text as="h4">{state?.basics?.website}</Text>
+              </Box>
+            </Flex>
 
             { state?.summary ?
               <>
@@ -58,13 +63,13 @@ export const Resume = (props: ResumeProps) => {
               }
             </ul>
 
-            {
+            {/* {
               state?.basics?.profiles?.length > 0 ?
-                <>
+                <Box>
                   <Divider></Divider>
                   <Heading as="h2">Profiles</Heading>
                   <Divider></Divider>
-                </> : ``
+                </Box> : ``
             }
 
             {
@@ -77,37 +82,7 @@ export const Resume = (props: ResumeProps) => {
                   </Box>
                 )
               })
-            }
-
-            {
-              state?.work?.length > 0 ?
-                <>
-                  <Divider></Divider>
-                  <Heading as="h2">Work</Heading>
-                  <Divider></Divider>
-                </> : ``
-            }
-
-            {
-              state?.work?.map((work, workIndex) => {
-                return (
-                  <Box key={workIndex}>
-                    <Text as="h4">{work?.company}</Text>
-                    <Text as="p">{work?.position}</Text>
-                    <Text as="p">{work?.website}</Text>
-                    <Text as="p">{work?.startDate}</Text>
-                    <Text as="p">{work?.endDate}</Text>
-                    <Text as="p">{work?.summary}</Text>
-                    { work?.highlights.length > 0 ? <Heading as="h4">Highlights</Heading> : '' }
-                    <ul>
-                      {
-                        work?.highlights?.map((highlight, highlightIndex) => <li key={highlightIndex}>{highlight}</li>)
-                      }
-                    </ul>
-                  </Box>
-                )
-              })
-            }
+            } */}
 
             {
               state?.skills?.length > 0 ?
@@ -138,6 +113,42 @@ export const Resume = (props: ResumeProps) => {
             }
 
             {
+              state?.work?.length > 0 ?
+                <>
+                  <Divider></Divider>
+                  <Heading as="h2">Work</Heading>
+                  <Divider></Divider>
+                </> : ``
+            }
+
+            {
+              state?.work?.map((work, workIndex) => {
+                return (
+                  <Box key={workIndex}>
+                    <Flex>
+                      <Box sx={{ flex: '1 1 auto' }}>
+                        <Text as="h3">{work?.company}</Text>
+                        <Text as="p">{work?.position}</Text>
+                        <Text as="p">{work?.website}</Text>
+                      </Box>
+                      <Box sx={{ textAlign: 'end' }}>
+                        <Text as="span">{work?.startDate}</Text> - &nbsp;
+                        <Text as="span">{work?.endDate}</Text>
+                      </Box>
+                    </Flex>
+                    <Text as="p">{work?.summary}</Text>
+                    { work?.highlights.length > 0 ? <Heading as="h4">Highlights</Heading> : '' }
+                    <ul>
+                      {
+                        work?.highlights?.map((highlight, highlightIndex) => <li key={highlightIndex}>{highlight}</li>)
+                      }
+                    </ul>
+                  </Box>
+                )
+              })
+            }
+
+            {
               state?.education?.length > 0 ?
                 <>
                   <Divider></Divider>
@@ -150,12 +161,18 @@ export const Resume = (props: ResumeProps) => {
               state?.education?.map((education, educationIndex) => {
                 return (
                   <Box key={educationIndex}>
-                    <Text as="h4">{education?.institution}</Text>
-                    <Text as="p">{education?.area}</Text>
-                    <Text as="p">{education?.studyType}</Text>
-                    <Text as="p">{education?.startDate}</Text>
-                    <Text as="p">{education?.endDate}</Text>
-                    <Text as="p">{education?.gpa}</Text>
+                    <Flex>
+                      <Box sx={{ flex: '1 1 auto' }}>
+                        <Text as="h3">{education?.institution}</Text>
+                        <Text as="p">{education?.area}</Text>
+                      </Box>
+                      <Box sx={{ textAlign: 'end' }}>
+                        <Text as="span">{education?.startDate}</Text> - &nbsp;
+                        <Text as="span">{education?.endDate}</Text>
+                      </Box>
+                    </Flex>
+                    {/* <Text as="p">{education?.studyType}</Text>
+                    <Text as="p">{education?.gpa}</Text> */}
                     { education?.courses?.length > 0 ? <Heading as="h4">Courses</Heading> : '' }
                     <ul>
                       {
@@ -180,11 +197,17 @@ export const Resume = (props: ResumeProps) => {
               state?.volunteer?.map((volunteer, volunteerIndex) => {
                 return (
                   <Box key={volunteerIndex}>
-                    <Text as="h4">{volunteer?.organization}</Text>
-                    <Text as="p">{volunteer?.position}</Text>
-                    <Text as="p">{volunteer?.website}</Text>
-                    <Text as="p">{volunteer?.startDate}</Text>
-                    <Text as="p">{volunteer?.endDate}</Text>
+                    <Flex>
+                      <Box sx={{ flex: '1 1 auto' }}>
+                        <Text as="h3">{volunteer?.organization}</Text>
+                        <Text as="p">{volunteer?.position}</Text>
+                        <Text as="p">{volunteer?.website}</Text>
+                      </Box>
+                      <Box sx={{ textAlign: 'end' }}>
+                        <Text as="span">{volunteer?.startDate}</Text> - &nbsp;
+                        <Text as="span">{volunteer?.endDate}</Text>
+                      </Box>
+                    </Flex>
                     <Text as="p">{volunteer?.summary}</Text>
                     { volunteer?.highlights.length > 0 ? <Heading as="h4">Highlights</Heading> : '' }
                     <ul>
@@ -210,9 +233,15 @@ export const Resume = (props: ResumeProps) => {
               state?.awards?.map((award, awardIndex) => {
                 return (
                   <Box key={awardIndex}>
-                    <Text as="h4">{award?.title}</Text>
-                    <Text as="p">{award?.date}</Text>
-                    <Text as="p">{award?.awarder}</Text>
+                    <Flex>
+                      <Box sx={{ flex: '1 1 auto' }}>
+                        <Text as="h3">{award?.title}</Text>
+                        <Text as="p">{award?.awarder}</Text>
+                      </Box>
+                      <Box sx={{ textAlign: 'end' }}>
+                        <Text as="p">{award?.date}</Text>
+                      </Box>
+                    </Flex>
                     <Text as="p">{award?.summary}</Text>
                   </Box>
                 )
@@ -232,10 +261,16 @@ export const Resume = (props: ResumeProps) => {
               state?.publications?.map((publication, publicationIndex) => {
                 return (
                   <Box key={publicationIndex}>
-                    <Text as="h4">{publication?.name}</Text>
-                    <Text as="p">{publication?.publisher}</Text>
-                    <Text as="p">{publication?.releaseDate}</Text>
-                    <Text as="p">{publication?.website}</Text>
+                    <Flex>
+                      <Box sx={{ flex: '1 1 auto' }}>
+                        <Text as="h3">{publication?.name}</Text>
+                        <Text as="p">{publication?.publisher}</Text>
+                        <Text as="p">{publication?.website}</Text>
+                      </Box>
+                      <Box sx={{ textAlign: 'end' }}>
+                        <Text as="p">{publication?.releaseDate}</Text>
+                      </Box>
+                    </Flex>
                     <Text as="p">{publication?.summary}</Text>
                   </Box>
                 )
@@ -255,7 +290,7 @@ export const Resume = (props: ResumeProps) => {
               state?.languages?.map((language, languageIndex) => {
                 return (
                   <Box key={languageIndex}>
-                    <Text as="h4">{language?.language}</Text>
+                    <Text as="h3">{language?.language}</Text>
                     <Text as="p">{language?.fluency}</Text>
                   </Box>
                 )
@@ -275,7 +310,7 @@ export const Resume = (props: ResumeProps) => {
               state?.interests?.map((interest, interestIndex) => {
                 return (
                   <Box key={interestIndex}>
-                    <Text as="h4">{interest?.name}</Text>
+                    <Text as="h3">{interest?.name}</Text>
                     <ul>
                       {
                         interest?.keywords?.map((keyword, keywordIndex) => <li key={keywordIndex}>{keyword}</li>)
@@ -299,7 +334,7 @@ export const Resume = (props: ResumeProps) => {
               state?.references?.map((reference, referenceIndex) => {
                 return (
                   <Box key={referenceIndex}>
-                    <Text as="h4">{reference?.name}</Text>
+                    <Text as="h3">{reference?.name}</Text>
                     <Text as="p">{reference?.reference}</Text>
                   </Box>
                 )

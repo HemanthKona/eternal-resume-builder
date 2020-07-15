@@ -3,10 +3,10 @@ import { ResumeSchema } from './resume.d';
 export const sample: ResumeSchema = {
   "basics": {
     "name": "Eternal Life",
-    "label": "Programmer",
+    "label": "Senior Software Programmer",
     "picture": "",
     "email": "sample@eternallife.live",
-    "phone": "(912) 555-4321",
+    "phone": "(999) 999-9999",
     "website": "http://example.com",
     "summary": "Richard hails from Tulsa. He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinals!) Before starting Pied Piper, he worked for Hooli as a part time software developer. While his work focuses on applied information theory, mostly optimizing lossless compression schema of both the length-limited and adaptive variants, his non-work interests range widely, everything from quantum computing to chaos theory. He could tell you about it, but THAT would NOT be a “length-limited” conversation!",
     "location": {
@@ -88,26 +88,56 @@ export const sample: ResumeSchema = {
       "summary": "Innovative middle-out compression algorithm that changes the way we store data."
     }
   ],
-  "skills": [
-    {
-      "name": "Web Development",
-      "level": "Master",
-      "keywords": [
-        "HTML",
-        "CSS",
-        "Javascript"
-      ]
-    },
-    {
-      "name": "Compression",
-      "level": "Master",
-      "keywords": [
-        "Mpeg",
-        "MP4",
-        "GIF"
-      ]
-    }
-  ],
+  "skills": [{
+    "name": "Web Development",
+    "level": "Master",
+    "keywords": [
+      "HTML",
+      "CSS3",
+      "Javascript",
+      "ES6",
+      "TypeScript",
+    ]
+  },
+  {
+    "name": "Backend",
+    "level": "Expert",
+    "keywords": [
+      "Python",
+      "Node.js",
+      "Java"
+    ]
+  },
+  {
+    "name": "Databases",
+    "level": "Expert",
+    "keywords": [
+      "NoSQL",
+      "MongoDB",
+      "MySQL"
+    ]
+  },
+  {
+    "name": "Tools",
+    "keywords": [
+      "Git",
+      "npm",
+      "Webpack",
+      "Gatsby",
+      "Netlify Cloud",
+      "VS CODE",
+      "Docker",
+      "Jira"
+    ]
+  },
+  {
+    "name": "Interested",
+    "keywords": [
+      "Cloud",
+      "Serverless",
+      "JAMStack"
+    ]
+  }],
   "languages": [
     {
       "language": "English",
