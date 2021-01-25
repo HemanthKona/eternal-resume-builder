@@ -1,29 +1,25 @@
 import { defaultTheme } from './default';
 import { base } from '@theme-ui/presets';
-import merge from 'lodash.merge'
-
+import { merge } from 'remeda';
 
 export const nord = merge(defaultTheme, {
   colors: {
-    text: "#4c566a",
-    primary: "#88C0D0",
-    secondary: "#4C566A"
+    text: '#4c566a',
+    primary: '#88C0D0',
+    secondary: '#4C566A',
   },
   text: {
     heading: {
-      color: 'primary'
+      color: 'primary',
     },
     heading2: {
-      color: 'primary'
+      color: 'primary',
     },
-    text: {
-
-    }
+    text: {},
   },
   styles: {
     hr: {
-      height: 2
-    }
-  }
-
-})
+      height: 2,
+    },
+  },
+});

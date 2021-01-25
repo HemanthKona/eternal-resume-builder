@@ -1,33 +1,27 @@
-import {
-  base,
-  roboto,
-  bulma,
-  tailwind
-} from '@theme-ui/presets';
-import merge from 'lodash.merge';
+import { base, roboto, bulma, tailwind } from '@theme-ui/presets';
+import { merge } from 'remeda';
 
-
-export const defaultTheme  = merge(tailwind, {
+export const defaultTheme = merge(tailwind, {
   fonts: {
-    body: "Spectral, Lato"
+    body: 'Spectral, Lato',
   },
   forms: {
     input: {
-      mb: 3
-    }
+      mb: 3,
+    },
   },
   styles: {
     li: {
-      display: 'flex'
+      display: 'flex',
     },
-    ".someheader": {
-      color: 'white'
+    '.someheader': {
+      color: 'white',
     },
     hr: {
-      height: 2
-    }
+      height: 2,
+    },
   },
-  ".someheader": {
-    color: 'white'
-  }
-})
+  '.someheader': {
+    color: 'white',
+  },
+});
