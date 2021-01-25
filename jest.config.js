@@ -1,9 +1,10 @@
 module.exports = {
-  testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest'
-  },
-  resolver: '@nrwl/jest/plugins/resolver',
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageReporters: ['html']
+  projects: [
+    '<rootDir>/apps/resume-builder',
+    '<rootDir>/apps/api',
+    '<rootDir>/libs/api-interfaces',
+    '<rootDir>/libs/data',
+    '<rootDir>/libs/util',
+    '<rootDir>/libs/themes',
+  ],
 };
