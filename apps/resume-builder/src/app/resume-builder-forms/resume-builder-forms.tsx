@@ -11,7 +11,7 @@ import {
   Label,
   Styled
 } from 'theme-ui';
-import { set, unset } from 'lodash';
+import { set } from 'remeda';
 import { produce } from 'immer';
 import { string as isString, object as isObject, array as isArray } from 'is_js';
 

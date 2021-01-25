@@ -24,5 +24,4 @@ export const EtLinkButton = styled(Link)`
   '&:hover': {
     background-color: ${props => props.theme.colors.gray[1]};
   },
-
 `;
