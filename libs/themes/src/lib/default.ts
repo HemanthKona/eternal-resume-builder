@@ -1,5 +1,5 @@
 import { base, roboto, bulma, tailwind } from '@theme-ui/presets';
-import { merge } from 'remeda';
+import { merge } from 'lodash';
 
 export const defaultTheme = merge(tailwind, {
   fonts: {

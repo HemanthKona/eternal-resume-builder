@@ -16,7 +16,7 @@ const ResumeProvider = props => {
   let resumeData = sample;
   const query = useQuery();
 
-  query.get('id') === 'hem' ? resumeData = hem : resumeData = sample ;
+  resumeData = query.get('id') === 'hem' ?  hem : sample ;
 
   const [state, setState] = useState<ResumeSchema>(resumeData);
 

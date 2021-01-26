@@ -11,7 +11,7 @@ import {
   Label,
   Styled
 } from 'theme-ui';
-import { set } from 'remeda';
+import { set } from 'lodash';
 import { produce } from 'immer';
 import { string as isString, object as isObject, array as isArray } from 'is_js';
 
@@ -35,7 +35,6 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
 
   // console.log("Resume Forms");
   const [state, setState] = useContext(ResumeContext);
-
   // console.log(state);
 
   const updateForm = ({ target: {name, type, value} }) => {

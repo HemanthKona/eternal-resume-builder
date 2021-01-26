@@ -1,6 +1,6 @@
 import { defaultTheme } from './default';
 import { base } from '@theme-ui/presets';
-import { merge } from 'remeda';
+import { merge } from 'lodash';
 
 export const nord = merge(defaultTheme, {
   colors: {

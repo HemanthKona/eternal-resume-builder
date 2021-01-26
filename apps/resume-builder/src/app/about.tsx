@@ -84,9 +84,6 @@ export const About = (props: AboutProps) => {
 
             </Button>
         )
-
-
-
       }
 
     </Flex>
