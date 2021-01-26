@@ -1,112 +1,127 @@
 import { ResumeSchema } from './resume';
 
 export const empty: ResumeSchema = {
-  "basics": {
-    "name": "",
-    "label": "",
-    "picture": "",
-    "email": "",
-    "phone": "",
-    "website": "",
-    "summary": "",
-    "location": {
-      "address": "",
-      "postalCode": "",
-      "city": "",
-      "countryCode": "",
-      "region": ""
+  basics: {
+    name: '',
+    label: '',
+    image: '',
+    email: '',
+    phone: '',
+    url: '',
+    summary: '',
+    location: {
+      address: '',
+      postalCode: '',
+      city: '',
+      countryCode: '',
+      region: '',
     },
-    "profiles": [
+    profiles: [
       {
-        "network": "",
-        "username": "",
-        "url": ""
-      }
-    ]
+        network: '',
+        username: '',
+        url: '',
+      },
+    ],
   },
-  "work": [
+  work: [
     {
-      "company": "",
-      "position": "",
-      "website": "",
-      "startDate": "",
-      "endDate": "",
-      "summary": "",
-      "highlights": [
-
-      ]
-    }
+      name: '',
+      position: '',
+      url: '',
+      description: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      summary: '',
+      highlights: [],
+    },
   ],
-  "volunteer": [
+  volunteer: [
     {
-      "organization": "",
-      "position": "",
-      "website": "",
-      "startDate": "",
-      "endDate": "",
-      "summary": "",
-      "highlights": [
-
-      ]
-    }
+      organization: '',
+      position: '',
+      url: '',
+      startDate: '',
+      endDate: '',
+      summary: '',
+      highlights: [],
+    },
   ],
-  "education": [
+  education: [
     {
-      "institution": "",
-      "area": "",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "",
-      "gpa": "",
-      "courses": [
-
-      ]
-    }
+      institution: '',
+      area: '',
+      studyType: '',
+      startDate: '',
+      endDate: '',
+      score: '',
+      courses: [],
+      url: '',
+    },
   ],
-  "awards": [
+  awards: [
     {
-      "title": "",
-      "date": "",
-      "awarder": "",
-      "summary": ""
-    }
+      title: '',
+      date: '',
+      awarder: '',
+      summary: '',
+    },
   ],
-  "publications": [
+  publications: [
     {
-      "name": "",
-      "publisher": "",
-      "releaseDate": "",
-      "website": "",
-      "summary": ""
-    }
+      name: '',
+      publisher: '',
+      releaseDate: '',
+      url: '',
+      summary: '',
+    },
   ],
-  "skills": [
+  skills: [
     {
-      "name": "",
-      "level": "",
-      "keywords": [
-
-      ]
-    }
+      name: '',
+      level: '',
+      keywords: [],
+    },
   ],
-  "languages": [
+  languages: [
     {
-      "language": "",
-      "fluency": ""
-    }
+      language: '',
+      fluency: '',
+    },
   ],
-  "interests": [
+  interests: [
     {
-      "name": "",
-      "keywords": [
-
-      ]
-    }
+      name: '',
+      keywords: [],
+    },
   ],
-  "references": [
+  references: [
     {
-      "name": "",
-      "reference": ""
-    }
-  ]
-}
+      name: '',
+      reference: '',
+    },
+  ],
+  certificates: [
+    {
+      name: '',
+      date: '',
+      issuer: '',
+      url: '',
+    },
+  ],
+  projects: [
+    {
+      name: '',
+      description: '',
+      endDate: '',
+      entity: '',
+      highlights: [],
+      keywords: [],
+      roles: [],
+      startDate: '',
+      type: '',
+      url: '',
+    },
+  ],
+};

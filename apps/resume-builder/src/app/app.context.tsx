@@ -10,20 +10,22 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const ResumeContext = createContext<any>({});
+const ResumeContext = createContext<{
+  state: ResumeSchema;
+  setState: React.Dispatch<React.SetStateAction<ResumeSchema>>;
+}>({state: {}, setState: () => {}});
 
 const ResumeProvider = props => {
   let resumeData = sample;
   const query = useQuery();
+  // resumeData = query.get('id') === 'hem' ?  hem : sample ;
 
-  resumeData = query.get('id') === 'hem' ?  hem : sample ;
-
-  const [state, setState] = useState<ResumeSchema>(resumeData);
+  const [state, setState] = useState(resumeData);
 
   // const api = resumeApi(state, setState);
 
   // const resumeApi = useMemo(() => [state, resumeFactory({ state, setState })], [state]);
-  const resumeApi = [state, setState] ;
+  const resumeApi = {state, setState} ;
 
   return (
     <ResumeContext.Provider value={resumeApi} {...props}>

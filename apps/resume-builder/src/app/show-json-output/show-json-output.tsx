@@ -12,7 +12,7 @@ export interface ShowJsonOutputProps {}
 
 
 export const ShowJsonOutput = (props: ShowJsonOutputProps) => {
-  const [state] = useContext(ResumeContext);
+  const {state} = useContext(ResumeContext);
 
   return (
     <Box bg='gray.6' p={'10px'} sx={{ overflow: 'scroll'}}>

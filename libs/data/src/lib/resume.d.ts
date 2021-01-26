@@ -6,16 +6,32 @@
 
 export interface ResumeSchema {
   /**
+   * link to the version of the schema that can validate the resume
+   */
+  $schema?: string;
+  /**
    * Specify any awards you have received throughout your professional career
    */
-  awards?:    Award[];
-  basics?:    Basics;
+  awards?: Award[];
+  basics?: Basics;
+  /**
+   * Specify any certificates you have received throughout your professional career
+   */
+  certificates?: Certificate[];
   education?: Education[];
   interests?: Interest[];
   /**
    * List any other languages you speak
    */
   languages?: Language[];
+  /**
+   * The schema version and any other tooling configuration lives here
+   */
+  meta?: Meta;
+  /**
+   * Specify career projects
+   */
+  projects?: Project[];
   /**
    * Specify your publications through your career
    */
@@ -27,9 +43,9 @@ export interface ResumeSchema {
   /**
    * List out your professional skill-set
    */
-  skills?:    Skill[];
+  skills?: Skill[];
   volunteer?: Volunteer[];
-  work?:      Work[];
+  work?: Work[];
 }
 
 export interface Award {
@@ -37,9 +53,6 @@ export interface Award {
    * e.g. Time Magazine
    */
   awarder?: string;
-  /**
-   * e.g. 1989-06-12
-   */
   date?: string;
   /**
    * e.g. Received for my work with Quantum Physics
@@ -57,19 +70,19 @@ export interface Basics {
    */
   email?: string;
   /**
+   * URL (as per RFC 3986) to a image in JPEG or PNG format
+   */
+  image?: string;
+  /**
    * e.g. Web Developer
    */
-  label?:    string;
+  label?: string;
   location?: Location;
-  name?:     string;
+  name?: string;
   /**
    * Phone numbers are stored as strings so use any format you like, e.g. 712-117-2923
    */
   phone?: string;
-  /**
-   * URL (as per RFC 3986) to a picture in JPEG or PNG format
-   */
-  picture?: string;
   /**
    * Specify any number of social networks that you participate in
    */
@@ -81,7 +94,7 @@ export interface Basics {
   /**
    * URL (as per RFC 3986) to your website, e.g. personal homepage
    */
-  website?: string;
+  url?: string;
 }
 
 export interface Location {
@@ -91,12 +104,12 @@ export interface Location {
    * Hinterhaus 5. Etage li.
    */
   address?: string;
-  city?:    string;
+  city?: string;
   /**
    * code as per ISO-3166-1 ALPHA-2, e.g. US, AU, IN
    */
   countryCode?: string;
-  postalCode?:  string;
+  postalCode?: string;
   /**
    * The general region where you live. Can be a US state, or a province, for instance.
    */
@@ -109,13 +122,32 @@ export interface Profile {
    */
   network?: string;
   /**
-   * e.g. http://twitter.com/neutralthoughts
+   * e.g. http://twitter.example.com/neutralthoughts
    */
   url?: string;
   /**
    * e.g. neutralthoughts
    */
   username?: string;
+}
+
+export interface Certificate {
+  /**
+   * e.g. 1989-06-12
+   */
+  date?: string;
+  /**
+   * e.g. CNCF
+   */
+  issuer?: string;
+  /**
+   * e.g. Certified Kubernetes Administrator
+   */
+  name?: string;
+  /**
+   * e.g. http://example.com
+   */
+  url?: string;
 }
 
 export interface Education {
@@ -127,26 +159,24 @@ export interface Education {
    * List notable courses/subjects
    */
   courses?: string[];
-  /**
-   * e.g. 2012-06-29
-   */
   endDate?: string;
-  /**
-   * grade point average, e.g. 3.67/4.0
-   */
-  gpa?: string;
   /**
    * e.g. Massachusetts Institute of Technology
    */
   institution?: string;
   /**
-   * e.g. 2014-06-29
+   * grade point average, e.g. 3.67/4.0
    */
+  score?: string;
   startDate?: string;
   /**
    * e.g. Bachelor
    */
   studyType?: string;
+  /**
+   * e.g. http://facebook.example.com
+   */
+  url?: string;
 }
 
 export interface Interest {
@@ -168,6 +198,61 @@ export interface Language {
   language?: string;
 }
 
+/**
+ * The schema version and any other tooling configuration lives here
+ */
+export interface Meta {
+  /**
+   * URL (as per RFC 3986) to latest version of this document
+   */
+  canonical?: string;
+  /**
+   * Using ISO 8601 with YYYY-MM-DDThh:mm:ss
+   */
+  lastModified?: string;
+  /**
+   * A version field which follows semver - e.g. v1.0.0
+   */
+  version?: string;
+}
+
+export interface Project {
+  /**
+   * Short summary of project. e.g. Collated works of 2017.
+   */
+  description?: string;
+  endDate?: string;
+  /**
+   * Specify the relevant company/entity affiliations e.g. 'greenpeace', 'corporationXYZ'
+   */
+  entity?: string;
+  /**
+   * Specify multiple features
+   */
+  highlights?: string[];
+  /**
+   * Specify special elements involved
+   */
+  keywords?: string[];
+  /**
+   * e.g. The World Wide Web
+   */
+  name?: string;
+  /**
+   * Specify your role on this project or in company
+   */
+  roles?: string[];
+  startDate?: string;
+  /**
+   * e.g. 'volunteering', 'presentation', 'talk', 'application', 'conference'
+   */
+  type?: string;
+  /**
+   * e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html
+   */
+  url?: string;
+}
+
 export interface Publication {
   /**
    * e.g. The World Wide Web
@@ -177,18 +262,15 @@ export interface Publication {
    * e.g. IEEE, Computer Magazine
    */
   publisher?: string;
-  /**
-   * e.g. 1990-08-01
-   */
   releaseDate?: string;
   /**
    * Short summary of publication. e.g. Discussion of the World Wide Web, HTTP, HTML.
    */
   summary?: string;
   /**
-   * e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html
+   * e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html
    */
-  website?: string;
+  url?: string;
 }
 
 export interface Reference {
@@ -219,12 +301,9 @@ export interface Skill {
 }
 
 export interface Volunteer {
-  /**
-   * e.g. 2012-06-29
-   */
   endDate?: string;
   /**
-   * Specify multiple accomplishments
+   * Specify accomplishments and achievements
    */
   highlights?: string[];
   /**
@@ -235,47 +314,46 @@ export interface Volunteer {
    * e.g. Software Engineer
    */
   position?: string;
-  /**
-   * resume.json uses the ISO 8601 date standard e.g. 2014-06-29
-   */
   startDate?: string;
   /**
    * Give an overview of your responsibilities at the company
    */
   summary?: string;
   /**
-   * e.g. http://facebook.com
+   * e.g. http://facebook.example.com
    */
-  website?: string;
+  url?: string;
 }
 
 export interface Work {
   /**
-   * e.g. Facebook
+   * e.g. Social Media Company
    */
-  company?: string;
-  /**
-   * e.g. 2012-06-29
-   */
+  description?: string;
   endDate?: string;
   /**
    * Specify multiple accomplishments
    */
   highlights?: string[];
   /**
+   * e.g. Menlo Park, CA
+   */
+  location?: string;
+  /**
+   * e.g. Facebook
+   */
+  name?: string;
+  /**
    * e.g. Software Engineer
    */
   position?: string;
-  /**
-   * resume.json uses the ISO 8601 date standard e.g. 2014-06-29
-   */
   startDate?: string;
   /**
    * Give an overview of your responsibilities at the company
    */
   summary?: string;
   /**
-   * e.g. http://facebook.com
+   * e.g. http://facebook.example.com
    */
-  website?: string;
+  url?: string;
 }
