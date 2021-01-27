@@ -120,7 +120,7 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
         Resume Builder
       </Heading>
       {Object.keys(state)
-        .filter((key) => key !== '$schema')
+        .filter((key) => !['$schema', 'meta'].includes(key))
         .map((topLevelKey, topLevelIndex) => {
           return (
             <div id={topLevelKey} key={topLevelIndex}>
