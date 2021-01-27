@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/libs/data',
     '<rootDir>/libs/util',
     '<rootDir>/libs/themes',
+    '<rootDir>/libs/components',
   ],
 };

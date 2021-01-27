@@ -15,19 +15,23 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 // libs
-import { AppSettingsContext } from './app.context';
+import {
+  ResumeProvider,
+  AppSettingsContext,
+} from '@eternal-resume-builder/util';
 import { defaultTheme, nord } from '@eternal-resume-builder/themes';
-import { ResumeProvider, AppSettingsProvider } from './app.context';
 import { downloadPDF } from '@eternal-resume-builder/util';
 
 // components
-import { EtNav } from './components/et-nav';
-
-import { About } from './about';
-import { Resume } from './resume';
-import { ShowJsonOutput } from './show-json-output';
-import { ResumeBuilderForms } from './resume-builder-forms';
-import { Designx } from './designx';
+import {
+  Components,
+  ShowJsonOutput,
+  EtNav,
+  Designx,
+  About,
+  Resume,
+  ResumeBuilderForms,
+} from '@eternal-resume-builder/components';
 
 const defaultView = {
   about: false,
@@ -89,7 +93,7 @@ export const App = () => {
       return prevState;
     });
   };
-
+  console.log(theme);
   return (
     <ThemeProvider theme={theme}>
       <EditorProvider>
@@ -101,6 +105,7 @@ export const App = () => {
                 <Box sx={{ bg: 'gray.3', height: '100vh', overflow: 'scroll' }}>
                   <Switch>
                     <Route exact path="/">
+                      <Route path="/components" component={Components} />
                       <About
                         theme={theme}
                         gotoView={updateCurrentView}

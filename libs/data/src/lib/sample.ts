@@ -1,5 +1,6 @@
 import { ResumeSchema } from './resume.d';
 
+// https://github.com/jsonresume/resume-schema/blob/master/sample.resume.json
 export const sample: ResumeSchema = {
   $schema:
     'https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json',

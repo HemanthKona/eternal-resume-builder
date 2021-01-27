@@ -4,24 +4,27 @@ import React, { useContext } from 'react';
 import { jsx, Box, Divider, Heading, Grid, Text } from 'theme-ui';
 
 // internal
-import { ResumeContext } from '../app.context';
+import { ResumeContext } from '@eternal-resume-builder/util';
 
 /* eslint-disable-next-line */
 export interface EternalResumeProps {}
 
 export const EternalResume = (props: EternalResumeProps) => {
-  const [state] = useContext(ResumeContext);
+  const { state } = useContext(ResumeContext);
 
   return (
-    <Grid gap={2} m='2' sx={{ boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll'}}>
+    <Grid
+      gap={2}
+      m="2"
+      sx={{ boxShadow: '0 0 4px 2px rgba(0, 0, 0, 0.5)', overflowY: 'scroll' }}
+    >
       <Grid gap={2} columns={['1fr']}>
-        <Box bg='gray.4' p='5'>
-
+        <Box bg="gray.4" p="5">
           <Heading as="h1">{state.basics.name}</Heading>
           <Heading as="h2">{state.basics.label}</Heading>
           <Text as="h4">{state.basics.email}</Text>
           <Text as="h4">{state.basics.phone}</Text>
-          <Text as="h4">{state.basics.website}</Text>
+          <Text as="h4">{state.basics.url}</Text>
           <Divider></Divider>
           <Text as="p">{state.basics.summary}</Text>
           <Text as="p">{state.basics.location.address}</Text>
@@ -43,9 +46,9 @@ export const EternalResume = (props: EternalResumeProps) => {
 
           <Heading as="h2">Work</Heading>
           <Divider></Divider>
-          <Text as="h4">{state.work[0].company}</Text>
+          <Text as="h4">{state.work[0].name}</Text>
           <Text as="p">{state.work[0].position}</Text>
-          <Text as="p">{state.work[0].website}</Text>
+          <Text as="p">{state.work[0].url}</Text>
           <Text as="p">{state.work[0].startDate}</Text>
           <Text as="p">{state.work[0].endDate}</Text>
           <Text as="p">{state.work[0].summary}</Text>
@@ -59,7 +62,7 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Divider></Divider>
           <Text as="h4">{state.volunteer[0].organization}</Text>
           <Text as="p">{state.volunteer[0].position}</Text>
-          <Text as="p">{state.volunteer[0].website}</Text>
+          <Text as="p">{state.volunteer[0].url}</Text>
           <Text as="p">{state.volunteer[0].startDate}</Text>
           <Text as="p">{state.volunteer[0].endDate}</Text>
           <Text as="p">{state.volunteer[0].summary}</Text>
@@ -76,7 +79,7 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="p">{state.education[0].studyType}</Text>
           <Text as="p">{state.education[0].startDate}</Text>
           <Text as="p">{state.education[0].endDate}</Text>
-          <Text as="p">{state.education[0].gpa}</Text>
+          <Text as="p">{state.education[0].score}</Text>
           <Heading as="h4">Courses</Heading>
           <ul>
             <li>{state.education[0].courses[0]}</li>
@@ -97,7 +100,7 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Text as="h4">{state.publications[0].name}</Text>
           <Text as="p">{state.publications[0].publisher}</Text>
           <Text as="p">{state.publications[0].releaseDate}</Text>
-          <Text as="p">{state.publications[0].website}</Text>
+          <Text as="p">{state.publications[0].url}</Text>
           <Text as="p">{state.publications[0].summary}</Text>
           <Divider></Divider>
 
@@ -138,17 +141,16 @@ export const EternalResume = (props: EternalResumeProps) => {
           <Divider></Divider>
           <Text as="h4">{state.references[0].name}</Text>
           <Text as="p">{state.references[0].reference}</Text>
-
         </Box>
       </Grid>
     </Grid>
-
   );
 };
 
 export default EternalResume;
 
-  {/*
+{
+  /*
     <Box bg={'blue'}>
   <Heading as="h1">{state.basics.name}</Heading>
   <br/>
@@ -162,4 +164,5 @@ export default EternalResume;
   <br/>
   <Heading as="h3">{state.basics.website}</Heading>
     </Box>
-  */}
+  */
+}

@@ -1,5 +1,3 @@
-// import './disable-speedy'
-
 import { CacheProvider, jsx } from '@emotion/core';
 import createCache from '@emotion/cache';
 
@@ -9,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './app/app';
 
-import { AppSettingsProvider } from './app/app.context';
+import { AppSettingsProvider } from '@eternal-resume-builder/util';
 
 const cache = createCache({
   nonce: 'et',

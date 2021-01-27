@@ -21,7 +21,8 @@
       ],
       "@eternal-resume-builder/data": ["libs/data/src/index.ts"],
       "@eternal-resume-builder/util": ["libs/util/src/index.ts"],
-      "@eternal-resume-builder/themes": ["libs/themes/src/index.ts"]
+      "@eternal-resume-builder/themes": ["libs/themes/src/index.ts"],
+      "@eternal-resume-builder/components": ["libs/components/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "apps/functions"]

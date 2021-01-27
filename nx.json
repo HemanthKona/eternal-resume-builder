@@ -2,10 +2,7 @@
   "npmScope": "eternal-resume-builder",
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tslint.json": "*",
     "nx.json": "*",
     "tsconfig.base.json": "*",
@@ -14,36 +11,21 @@
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
   "projects": {
-    "resume-builder": {
-      "tags": []
-    },
+    "resume-builder": { "tags": [] },
     "resume-builder-e2e": {
       "tags": [],
       "implicitDependencies": ["resume-builder"]
     },
-    "api": {
-      "tags": []
-    },
-    "api-interfaces": {
-      "tags": []
-    },
-    "data": {
-      "tags": []
-    },
-    "util": {
-      "tags": []
-    },
-    "themes": {
-      "tags": []
-    }
+    "api": { "tags": [] },
+    "api-interfaces": { "tags": [] },
+    "data": { "tags": [] },
+    "util": { "tags": [] },
+    "themes": { "tags": [] },
+    "components": { "tags": ["et-components"] }
   },
-  "affected": {
-    "defaultBase": "master"
-  }
+  "affected": { "defaultBase": "master" }
 }

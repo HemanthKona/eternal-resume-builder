@@ -20,7 +20,7 @@ import {
 } from 'is_js';
 
 // libs
-import { ResumeContext } from '../app.context';
+import { ResumeContext } from '@eternal-resume-builder/util';
 import { empty } from '@eternal-resume-builder/data';
 
 const capitalize = (str: string) => {

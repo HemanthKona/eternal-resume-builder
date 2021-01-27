@@ -14,7 +14,10 @@ import {
 } from 'theme-ui';
 
 // internal
-import { AppSettingsContext, ResumeContext } from '../app.context';
+import {
+  AppSettingsContext,
+  ResumeContext,
+} from '@eternal-resume-builder/util';
 import { defaultTheme, nord } from '@eternal-resume-builder/themes';
 
 /* eslint-disable-next-line */
