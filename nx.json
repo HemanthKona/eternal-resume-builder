@@ -25,7 +25,12 @@
     "data": { "tags": [] },
     "util": { "tags": [] },
     "themes": { "tags": [] },
-    "components": { "tags": ["et-components"] }
+    "components": { "tags": ["et-components"] },
+    "next-resume-builder": { "tags": [] },
+    "next-resume-builder-e2e": {
+      "tags": [],
+      "implicitDependencies": ["next-resume-builder"]
+    }
   },
   "affected": { "defaultBase": "master" }
 }

@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/libs/util',
     '<rootDir>/libs/themes',
     '<rootDir>/libs/components',
+    '<rootDir>/apps/next-resume-builder',
   ],
 };

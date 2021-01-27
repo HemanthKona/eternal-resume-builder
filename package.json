@@ -28,17 +28,20 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "11.0.0",
+    "@emotion/server": "11.0.0",
     "@emotion/styled": "11.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@theme-ui/editor": "^0.3.5",
     "@theme-ui/presets": "^0.3.5",
+    "core-js": "^3.6.5",
     "document-register-element": "1.13.1",
     "express": "4.17.1",
     "immer": "^8.0.1",
     "is_js": "^0.9.0",
     "lodash": "^4.17.20",
+    "next": "10.0.1",
     "phantomjscloud-lite": "^3.5.8",
     "prism-react-renderer": "^1.1.1",
     "react": "17.0.1",
@@ -47,7 +50,8 @@
     "remeda": "0.0.27",
     "resume-schema": "^1.0.0",
     "stream": "0.0.2",
-    "theme-ui": "^0.3.5"
+    "theme-ui": "^0.3.5",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
@@ -60,6 +64,7 @@
     "@nrwl/eslint-plugin-nx": "11.1.5",
     "@nrwl/express": "11.1.5",
     "@nrwl/jest": "11.1.5",
+    "@nrwl/next": "^11.1.5",
     "@nrwl/node": "11.1.5",
     "@nrwl/react": "11.1.5",
     "@nrwl/tao": "11.1.5",
