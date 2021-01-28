@@ -93,7 +93,7 @@ export const App = () => {
       return prevState;
     });
   };
-  console.log(theme);
+
   return (
     <ThemeProvider theme={theme}>
       <EditorProvider>

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
-/** @jsx jsx */
-import { jsx, Box, Button, Flex } from 'theme-ui';
+import { Box, Button, Flex } from 'theme-ui';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faKeyboard } from '@fortawesome/free-solid-svg-icons';
