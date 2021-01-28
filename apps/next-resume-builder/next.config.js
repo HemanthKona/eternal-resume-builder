@@ -2,5 +2,6 @@
 const withNx = require('@nrwl/next/plugins/with-nx');
 
 module.exports = withNx({
-  target: 'serverless'
+  target: 'serverless',
+  distDir: 'dist/apps/next-resume-builder'
 });
