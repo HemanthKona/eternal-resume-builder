@@ -4,3 +4,6 @@
   # publish = "apps/resume-builder/publish"
   command = "nx build next-resume-builder --prod"
   publish = "dist/apps/next-resume-builder"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
