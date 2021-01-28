@@ -2,7 +2,7 @@
   # command = "cd ./apps/functions && npm i && cd ../../ && nx build resume-builder --prod"
   # functions = "./apps/functions"
   # publish = "apps/resume-builder/publish"
-  command = "nx build next-resume-builder --prod"
+  command = "nx run next-resume-builder:export"
   publish = "dist/apps/next-resume-builder"
 
 [[plugins]]
