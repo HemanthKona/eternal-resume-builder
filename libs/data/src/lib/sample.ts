@@ -5,7 +5,7 @@ export const sample: ResumeSchema = {
   $schema:
     'https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json',
   basics: {
-    name: 'Richard Hendriks',
+    name: 'Test Richard Hendriks',
     label: 'Programmer',
     image: '',
     email: 'richard.hendriks@mail.com',

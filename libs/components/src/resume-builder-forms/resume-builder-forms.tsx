@@ -48,10 +48,13 @@ export const ResumeBuilderForms = (props: ResumeBuilderFormsProps) => {
 
     if (updatePath.length === 1) {
       setState((prevState) => {
-        return {
+        
+        const newState = {
           ...prevState,
           [name]: value,
-        };
+        }
+
+        return newState;
       });
     } else {
       setState((prevState) => {
