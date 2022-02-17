@@ -41,7 +41,7 @@
     "immer": "^8.0.1",
     "is_js": "^0.9.0",
     "lodash": "^4.17.20",
-    "next": "10.0.1",
+    "next": "12.1.0",
     "phantomjscloud-lite": "^3.5.8",
     "prism-react-renderer": "^1.1.1",
     "react": "17.0.1",
