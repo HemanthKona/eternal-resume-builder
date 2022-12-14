@@ -37,7 +37,7 @@
     "@theme-ui/presets": "^0.3.5",
     "core-js": "^3.6.5",
     "document-register-element": "1.13.1",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "immer": "^8.0.1",
     "is_js": "^0.9.0",
     "lodash": "^4.17.20",
